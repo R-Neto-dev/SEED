@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Sergipe - Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="icon">PS</div>
+            <div>
+                <h1>Prova Sergipe</h1>
+                <span>Administrador</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#" class="nav-item active"><i class='bx bx-grid-alt'></i> Dashboard</a>
+            <a href="#" class="nav-item"><i class='bx bxs-school'></i> Escolas</a>
+            <a href="#" class="nav-item"><i class='bx bxs-user-detail'></i> Coordenadores</a>
+            <a href="#" class="nav-item"><i class='bx bxs-chalkboard'></i> Professores</a>
+            <a href="#" class="nav-item"><i class='bx bxs-user'></i> Alunos</a>
+            <a href="#" class="nav-item"><i class='bx bxs-file'></i> Provas</a>
+            <a href="#" class="nav-item"><i class='bx bxs-bar-chart-alt-2'></i> Relatórios</a>
+            <a href="#" class="nav-item"><i class='bx bx-calendar-event'></i> Calendário</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item"><i class='bx bx-cog'></i> Configurações</a>
+            <a href="#" class="nav-item"><i class='bx bx-log-out'></i> Sair</a>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+        <header class="top-header">
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Pesquisar...">
+            </div>
+
+            <div class="user-profile">
+                <div class="notifications">
+                    <i class='bx bx-bell'></i>
+                    <span class="badge">3</span>
+                </div>
+
+                <div class="user-info">
+                    <div class="avatar">
+                        <i class='bx bx-user'></i>
+                    </div>
+                    <div>
+                        <p class="user-name">Carlos Mendes</p>
+                        <p class="user-role">Administrador do Sistema</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="dashboard-intro">
+            <h2>Painel Administrativo</h2>
+            <p>Visão geral do sistema de provas do Estado de Sergipe</p>
+        </section>
+
+        <!-- Cards -->
+        <div class="status-grid">
+            <div class="card card-blue">
+                <div class="card-content">
+                    <span>Escolas</span>
+                    <h3>245</h3>
+                    <p>Cadastradas no sistema</p>
+                </div>
+                <i class='bx bxs-building card-icon'></i>
+            </div>
+
+            <div class="card card-green">
+                <div class="card-content">
+                    <span>Professores</span>
+                    <h3>3.420</h3>
+                    <p>Ativos</p>
+                </div>
+                <i class='bx bxs-graduation card-icon'></i>
+            </div>
+
+            <div class="card card-purple">
+                <div class="card-content">
+                    <span>Alunos</span>
+                    <h3>85.600</h3>
+                    <p>Matriculados</p>
+                </div>
+                <i class='bx bxs-group card-icon'></i>
+            </div>
+
+            <div class="card card-white">
+                <div class="card-content">
+                    <span>Provas</span>
+                    <h3>12.450</h3>
+                    <p class="trend-up">Aplicadas este ano <br><span>+18% em relação ao mês anterior</span></p>
+                </div>
+                <i class='bx bxs-file card-icon'></i>
+            </div>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="content-grid">
+            <div class="left-column">
+                <div class="section-card">
+                    <h3>Estatísticas do Sistema</h3>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <span>Provas Aplicadas (Mês)</span>
+                            <strong>1245 <small>+12%</small></strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Taxa de Conclusão</span>
+                            <strong>94% <small>+3%</small></strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Média Geral do Estado</span>
+                            <strong>7.2 <small>+0.4</small></strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Provas Agendadas</span>
+                            <strong>89</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3>Escolas Recentes</h3>
+                        <a href="#">Ver todas <i class='bx bx-chevron-right'></i></a>
+                    </div>
+
+                    <div class="list-item">
+                        <div class="list-icon"><i class='bx bxs-school'></i></div>
+                        <div class="list-info">
+                            <strong>E.E. Professor João Alves</strong>
+                            <span>Aracaju</span>
+                        </div>
+                        <div class="list-meta">
+                            <strong>850 alunos</strong>
+                            <span>45 professores</span>
+                        </div>
+                        
+                    </div>
+                    <div class="list-item">
+                        <div class="list-icon"><i class='bx bxs-school'></i></div>
+                        <div class="list-info">
+                            <strong>E.E. Maria do Carmo</strong>
+                            <span>Itabaiana</span>
+                        </div>
+                        <div class="list-meta">
+                            <strong>620 alunos</strong>
+                            <span>32 professores</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendário -->
+          <div class="calendar">
+  <div class="calendar-card">
+    <div class="calendar-header">
+      <button class="nav-btn">&#10094;</button>
+      <h3>Abril 2026</h3>
+      <button class="nav-btn">&#10095;</button>
+    </div>
+
+    <div class="calendar-weekdays">
+      <span>Dom</span>
+      <span>Seg</span>
+      <span>Ter</span>
+      <span>Qua</span>
+      <span>Qui</span>
+      <span>Sex</span>
+      <span>Sáb</span>
+    </div>
+
+    <div class="calendar-days">
+    
+    </div>
+  </div>
+</div>
+        </div>
+
+        <!-- Ações -->
+        <div class="section-card" style="margin-top: 20px;">
+            <h3>Ações Rápidas</h3>
+            <div class="quick-actions">
+                <div class="action-btn">
+                    <i class='bx bxs-school'></i>
+                    <span>Gerenciar Escolas</span>
+                </div>
+                <div class="action-btn">
+                    <i class='bx bxs-graduation'></i>
+                    <span>Gerenciar Professores</span>
+                </div>
+                <div class="action-btn">
+                    <i class='bx bxs-group'></i>
+                    <span>Gerenciar Alunos</span>
+                </div>
+                <div class="action-btn">
+                    <i class='bx bxs-bar-chart-alt-2'></i>
+                    <span>Ver Relatórios</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
