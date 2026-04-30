@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Prova Sergipe | Painel do Professor</title>
+    <!-- Boxicons CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <!-- Fonte Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/Professor/professordesk/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo-area">
+          <div class="logo-icon">PS</div>
+          <div class="logo-text-wrapper">
+            <span class="logo-text">Prova Sergipe</span>
+            <span class="logo-subtitle">Professor</span>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-item active" data-page="dashboard">
+            <i class="bx bx-home"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="#" class="nav-item" data-page="provas">
+            <i class="bx bx-book-open"></i>
+            <span>Provas</span>
+          </a>
+
+          <a href="#" class="nav-item" data-page="turmas">
+            <i class="bx bx-group"></i>
+            <span>Turmas</span>
+          </a>
+
+          <a href="#" class="nav-item" data-page="banco">
+            <i class="bx bx-library"></i>
+            <span>Banco de Questões</span>
+          </a>
+          <a href="#" class="nav-item" data-page="resultados">
+            <i class="bx bx-line-chart"></i>
+            <span>Resultados</span>
+          </a>
+          <a href="#" class="nav-item" data-page="calendario">
+            <i class="bx bx-calendar-event"></i>
+            <span>Calendário</span>
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="#" class="nav-item" data-page="configuracoes">
+            <i class="bx bx-cog"></i>
+            <span>Configurações</span>
+          </a>
+          <a href="#" class="nav-item" id="logout">
+            <i class="bx bx-log-out-circle"></i>
+            <span>Sair</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-btn" id="menuBtn">
+              <i class="bx bx-menu"></i>
+            </button>
+          </div>
+          <div class="header-right">
+            <!-- Ícone de notificação -->
+            <button class="notification-btn">
+              <i class="bx bx-bell"></i>
+              <span class="notification-badge">2</span>
+            </button>
+
+            <!-- Info do usuário -->
+            <div class="user">
+              <div class="user-avatar">P</div>
+              <div class="user-details">
+                <div class="user-name">Paula Santos</div>
+                <div class="user-role">Professor</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content" id="mainContent">
+          <!-- DASHBOARD -->
+          <div class="page active" id="dashboard-page">
+            <!-- welcome -->
+            <div class="welcome">
+              <h1>Olá, Paula!</h1>
+              <p>Gerencie suas provas e acompanhe o desempenho do aluno</p>
+            </div>
+
+            <!-- stats cards -->
+            <div class="stats">
+              <div class="stat-card primary">
+                <div class="stat-data">
+                  <div class="stat-label">Total de Provas</div>
+                  <div class="stat-value">24</div>
+                  <div class="stat-note">Para os próximos 30 dias</div>
+                </div>
+                <div class="stat-icon"><i class="bx bx-time-five"></i></div>
+              </div>
+              <div class="stat-card success">
+                <div class="stat-data">
+                  <div class="stat-label">Turmas</div>
+                  <div class="stat-value">3</div>
+                  <div class="stat-note">Este semestre</div>
+                </div>
+                <div class="stat-icon"><i class="bx bx-check-circle"></i></div>
+              </div>
+              <div class="stat-card warning">
+                <div class="stat-data">
+                  <div class="stat-label">Média das Turmas</div>
+                  <div class="stat-value">7.8</div>
+                  <div class="stat-note positive">
+                    + 15% em relação ao mês anterior
+                  </div>
+                </div>
+                <div class="stat-icon"><i class="bx bx-star"></i></div>
+              </div>
+              <div class="stat-card info">
+                <div class="stat-data">
+                  <div class="stat-label2">Questões no Banco</div>
+                  <div class="stat-value2">150</div>
+                  <div class="stat-note2">Disponíveis</div>
+                </div>
+                <div class="stat-icon"><i class="bx bx-notepad"></i></div>
+              </div>
+            </div>
+
+            <!-- Layout: Coluna esquerda (Próximas Provas + Resultados) e Coluna direita (Calendário) -->
+            <div class="dashboard-grid">
+              <!-- Coluna ESQUERDA -->
+              <div class="left-column">
+                <!-- Provas Recentes -->
+                <div class="card">
+                  <div class="card-header">
+                    <h2><i class="bx bx-list-check"></i> Provas Recentes</h2>
+                    <a href="#" class="link view-all-link" data-page="provas">
+                      Ver todas <i class="bx bx-right-arrow-alt"></i
+                    ></a>
+                  </div>
+                  <div class="exams-list">
+                    <div class="exam-item">
+                      <div class="exam-info">
+                        <div class="exam-name">
+                          Matemática - Prova Bimestral
+                        </div>
+                        <div class="exam-date">
+                          <i class="bx bx-calendar"></i> 15 Abr 2026 às 08:00
+                        </div>
+                      </div>
+                      <span class="exam-progress">19/32 responderam</span>
+                    </div>
+                    <div class="exam-item">
+                      <div class="exam-info">
+                        <div class="exam-name">Matemática - Avaliação</div>
+                        <div class="exam-date">
+                          <i class="bx bx-calendar"></i> 18 Abr 2026 às 10:00
+                        </div>
+                      </div>
+                      <span class="exam-progress">16/30 responderam</span>
+                    </div>
+                    <div class="exam-item">
+                      <div class="exam-info">
+                        <div class="exam-name">Matemática - Prova 1</div>
+                        <div class="exam-date">
+                          <i class="bx bx-calendar"></i> 22 Abr 2026 às 14:00
+                        </div>
+                      </div>
+                      <span class="exam-progress">30/32 responderam</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Minhas Turmas -->
+                <div class="card">
+                  <div class="card-header">
+                    <h2><i class="bx bx-bar-chart-alt-2"></i> Minhas Turmas</h2>
+                    <a href="#" class="link view-all-link" data-page="turmas">
+                      Ver todas <i class="bx bx-right-arrow-alt"></i
+                    ></a>
+                  </div>
+                  <div class="results-list">
+                    <div class="result-item">
+                      <div class="result-info">
+                        <div class="result-name">
+                          6º Ano B
+                          <div class="result-date">32 alunos</div>
+                        </div>
+                      </div>
+                      <div class="result-grade">7.5</div>
+                    </div>
+                    <div class="result-item">
+                      <div class="result-info">
+                        <div class="result-name">7º Ano C</div>
+                        <div class="result-date">30 alunos</div>
+                      </div>
+                      <div class="result-grade">9.0</div>
+                    </div>
+                    <div class="result-item">
+                      <div class="result-info">
+                        <div class="result-name">8º Ano A</div>
+                        <div class="result-date">32 alunos</div>
+                      </div>
+                      <div class="result-grade average">7.5</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coluna DIREITA: Calendário -->
+              <div class="right-column">
+                <div class="card calendar-card">
+                  <div class="card-header">
+                    <h2><i class="bx bx-calendar"></i> Abril 2026</h2>
+                    <div class="calendar-nav">
+                      <button class="cal-nav" id="prevMonth">
+                        <i class="bx bx-chevron-left"></i>
+                      </button>
+                      <button class="cal-nav" id="nextMonth">
+                        <i class="bx bx-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="calendar">
+                    <div class="calendar-weekdays">
+                      <span>Dom</span><span>Seg</span><span>Ter</span
+                      ><span>Qua</span><span>Qui</span><span>Sex</span
+                      ><span>Sáb</span>
+                    </div>
+                    <div class="calendar-days" id="calendarDays"></div>
+                  </div>
+                  <div class="calendar-legend">
+                    <div class="legend">
+                      <i class="bx bx-calendar-check"></i
+                      ><span class="dot exam"></span> Provas
+                    </div>
+                    <div class="legend">
+                      <i class="bx bx-time"></i
+                      ><span class="dot deadline"></span> Prazos
+                    </div>
+                    <div class="legend">
+                      <i class="bx bx-group"></i
+                      ><span class="dot meeting"></span> Reuniões
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PÁGINAS SECUNDÁRIAS -->
+          <div class="page" id="resultados-page">
+            <div class="card">
+              <div class="card-header"><h2>Todos os Resultados</h2></div>
+              <div id="allResultsList" class="results-list-full"></div>
+            </div>
+          </div>
+          <div class="page" id="calendario-page">
+            <div class="card">
+              <div class="card-header"><h2>Calendário Acadêmico</h2></div>
+              <div id="fullCalendarContainer"></div>
+            </div>
+          </div>
+          <div class="page" id="configuracoes-page">
+            <div class="card">
+              <div class="card-header"><h2>Configurações</h2></div>
+              <p style="padding: 20px">
+                Preferências de tema, notificações, etc.
+              </p>
+            </div>
+          </div>
+          <div class="page" id="provas-page">
+            <div class="card">
+              <div class="card-header"><h2>Provas</h2></div>
+              <div id="allExamsList" class="exams-list-full"></div>
+            </div>
+          </div>
+
+          <div class="page" id="turmas-page">
+            <div class="card">
+              <div class="card-header"><h2>Turmas</h2></div>
+              <p style="padding: 20px">Conteúdo das turmas aqui</p>
+            </div>
+          </div>
+
+          <div class="page" id="banco-page">
+            <div class="card">
+              <div class="card-header"><h2>Banco de Questões</h2></div>
+              <p style="padding: 20px">Ainda vazio</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="/Professor/professordesk/javascript.js"></script>
+  </body>
+</html>
