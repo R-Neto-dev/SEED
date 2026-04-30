@@ -31,6 +31,11 @@
           </div>
         </div>
         <nav class="nav">
+          <a href="#" class="nav-item active" data-page="dashboard">
+            <i class="bx bx-home"></i>
+            <span>Dashboard</span>
+          </a>
+
           <a href="#" class="nav-item" data-page="provas">
             <i class="bx bx-book-open"></i>
             <span>Provas</span>
@@ -94,7 +99,7 @@
 
         <div class="content" id="mainContent">
           <!-- DASHBOARD -->
-          <div class="page" id="dashboard-page">
+          <div class="page active" id="dashboard-page">
             <!-- welcome -->
             <div class="welcome">
               <h1>Olá, Paula!</h1>
@@ -262,19 +267,19 @@
           </div>
 
           <!-- PÁGINAS SECUNDÁRIAS -->
-          <div class="page" id="resultados-page" style="display: none">
+          <div class="page" id="resultados-page">
             <div class="card">
               <div class="card-header"><h2>Todos os Resultados</h2></div>
               <div id="allResultsList" class="results-list-full"></div>
             </div>
           </div>
-          <div class="page" id="calendario-page" style="display: none">
+          <div class="page" id="calendario-page">
             <div class="card">
               <div class="card-header"><h2>Calendário Acadêmico</h2></div>
               <div id="fullCalendarContainer"></div>
             </div>
           </div>
-          <div class="page" id="configuracoes-page" style="display: none">
+          <div class="page" id="configuracoes-page">
             <div class="card">
               <div class="card-header"><h2>Configurações</h2></div>
               <p style="padding: 20px">
@@ -282,21 +287,21 @@
               </p>
             </div>
           </div>
-          <div class="page" id="provas-page" style="display: none">
+          <div class="page" id="provas-page">
             <div class="card">
               <div class="card-header"><h2>Provas</h2></div>
               <div id="allExamsList" class="exams-list-full"></div>
             </div>
           </div>
 
-          <div class="page" id="turmas-page" style="display: none">
+          <div class="page" id="turmas-page">
             <div class="card">
               <div class="card-header"><h2>Turmas</h2></div>
               <p style="padding: 20px">Conteúdo das turmas aqui</p>
             </div>
           </div>
 
-          <div class="page" id="banco-page" style="display: none">
+          <div class="page" id="banco-page">
             <div class="card">
               <div class="card-header"><h2>Banco de Questões</h2></div>
               <p style="padding: 20px">Ainda vazio</p>

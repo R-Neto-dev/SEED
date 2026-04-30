@@ -1,12 +1,5 @@
 // Dados dos eventos (Provas, Prazos, Reuniões)
-const eventsData = [
-    { date: "2026-04-15", type: "exam", title: "Matemática - Prova Bimestral" },
-    { date: "2026-04-18", type: "exam", title: "Português - Avaliação" },
-    { date: "2026-04-22", type: "exam", title: "História - Prova" },
-    { date: "2026-04-10", type: "deadline", title: "Entrega de Trabalho" },
-    { date: "2026-04-20", type: "deadline", title: "Prazo de Inscrição" },
-    { date: "2026-04-25", type: "meeting", title: "Reunião de Pais" }
-];
+const eventsData = [];
 
 let currentCalendarDate = new Date(2026, 3); // Abril 2026
 
@@ -45,31 +38,31 @@ function renderCalendar() {
 // Troca de páginas
 function setupPages() {
     const navLinks = document.querySelectorAll('.nav-item[data-page]');
-    const pages = ['dashboard', 'provas', 'turmas', 'banco', 'resultados', 'calendario', 'configuracoes'];
+    const pages = document.querySelectorAll('.page');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const pageId = link.getAttribute('data-page');
-            // ativar classe active
             navLinks.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            // esconder todas as páginas
-            pages.forEach(p => {
-                const el = document.getElementById(`${p}-page`);
-                if(el) el.style.display = 'none';
-            });
+            pages.forEach(p => p.classList.remove('active'));
             const activePage = document.getElementById(`${pageId}-page`);
-            if(activePage) activePage.style.display = 'block';
+            if(activePage) activePage.classList.add('active');
         });
     });
+
+    const defaultLink = document.querySelector('.nav-item[data-page="dashboard"]');
+    if (defaultLink) defaultLink.classList.add('active');
+
     // Botões "Ver todas" redirecionam
     document.querySelectorAll('.view-all-link').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const target = btn.getAttribute('data-page');
             if(target) {
-                document.querySelector(`.nav-item[data-page="${target}"]`).click();
+                const targetLink = document.querySelector(`.nav-item[data-page="${target}"]`);
+                if (targetLink) targetLink.click();
             }
         });
     });
@@ -172,9 +165,10 @@ function initCalendarNav() {
 
 // Logout
 function logout() {
+    const userName = document.querySelector('.user-name')?.textContent.trim() || 'usuário';
     document.getElementById('logout')?.addEventListener('click', (e) => {
         e.preventDefault();
-        if(confirm('Deseja sair da sua conta?')) alert('Até logo, João!');
+        if (confirm('Deseja sair da sua conta?')) alert(`Até logo, ${userName}!`);
     });
 }
 

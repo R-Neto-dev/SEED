@@ -118,6 +118,14 @@ body {
     min-height: 100vh;
 }
 
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
 /* HEADER */
 .header {
     display: flex;
