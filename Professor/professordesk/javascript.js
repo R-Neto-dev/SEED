@@ -163,6 +163,92 @@ function initCalendarNav() {
     }
 }
 
+function fillProvasTable() {
+    const provas = [
+        {
+            nome: "Matemática - Prova Bimestral",
+            turma: "9º Ano A",
+            data: "15 Abr 2026",
+            questoes: 20,
+            participacao: "28/32",
+            status: "Ativa"
+        },
+        {
+            nome: "Matemática - Avaliação Diagnóstica",
+            turma: "8º Ano B",
+            data: "12 Abr 2026",
+            questoes: 15,
+            participacao: "30/30",
+            status: "Encerrada"
+        },
+        {
+            nome: "Matemática - Prova Mensal",
+            turma: "7º Ano A",
+            data: "22 Abr 2026",
+            questoes: 10,
+            participacao: "0/28",
+            status: "Rascunho"
+        },
+        {
+            nome: "Matemática - Prova 1",
+            turma: "6º Ano C",
+            data: "10 Abr 2026",
+            questoes: 15,
+            participacao: "35/35",
+            status: "Encerrada"
+        }
+    ];
+
+    const container = document.getElementById('provasTableBody');
+
+    if(container) {
+        container.innerHTML = provas.map(prova => {
+
+            let statusClass = '';
+
+            if(prova.status === 'Ativa') {
+                statusClass = 'ativa';
+            }
+
+            else if(prova.status === 'Encerrada') {
+                statusClass = 'encerrada';
+            }
+
+            else {
+                statusClass = 'rascunho';
+            }
+
+            return `
+                <tr>
+                    <td>
+                        <div class="prova-info">
+                            <div class="prova-icon">
+                                <i class='bx bx-file'></i>
+                            </div>
+
+                            <span>${prova.nome}</span>
+                        </div>
+                    </td>
+
+                    <td>${prova.turma}</td>
+
+                    <td>${prova.data}</td>
+
+                    <td>${prova.questoes}</td>
+
+                    <td>${prova.participacao}</td>
+
+                    <td>
+                        <span class="status ${statusClass}">
+                            ${prova.status}
+                        </span>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    }
+}
+
 // Logout
 function logout() {
     const userName = document.querySelector('.user-name')?.textContent.trim() || 'usuário';
@@ -177,6 +263,7 @@ function init() {
     renderCalendar();
     setupPages();
     fillFullExams();
+    fillProvasTable();
     fillTurmas();
     fillFullResults();
     mobileMenu();

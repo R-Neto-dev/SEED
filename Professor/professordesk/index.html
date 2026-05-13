@@ -288,9 +288,40 @@
             </div>
           </div>
           <div class="page" id="provas-page">
-            <div class="card">
-              <div class="card-header"><h2>Provas</h2></div>
-              <div id="allExamsList" class="exams-list-full"></div>
+            <div class="provas-header">
+              <div>
+                <h1>Minhas Provas</h1>
+                <p>Gerencie suas avaliações</p>
+              </div>
+
+              <button class="btn-new-exam">
+                <i class="bx bx-plus"></i>
+                Nova Prova
+              </button>
+            </div>
+
+            <div class="provas-filters">
+              <button class="filter-btn active">Todas</button>
+              <button class="filter-btn">Ativas</button>
+              <button class="filter-btn">Encerradas</button>
+              <button class="filter-btn">Rascunhos</button>
+            </div>
+
+            <div class="card provas-table-card">
+              <table class="provas-table">
+                <thead>
+                  <tr>
+                    <th>Prova</th>
+                    <th>Turma</th>
+                    <th>Data</th>
+                    <th>Questões</th>
+                    <th>Participação</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="provasTableBody"></tbody>
+              </table>
             </div>
           </div>
 
