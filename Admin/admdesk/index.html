@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prova Sergipe - Painel Administrativo</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -22,15 +22,40 @@
         </div>
 
         <nav class="menu">
-            <a href="#" class="nav-item active"><i class='bx bx-grid-alt'></i> Dashboard</a>
-            <a href="#" class="nav-item"><i class='bx bxs-school'></i> Escolas</a>
-            <a href="#" class="nav-item"><i class='bx bxs-user-detail'></i> Coordenadores</a>
-            <a href="#" class="nav-item"><i class='bx bxs-chalkboard'></i> Professores</a>
-            <a href="#" class="nav-item"><i class='bx bxs-user'></i> Alunos</a>
-            <a href="#" class="nav-item"><i class='bx bxs-file'></i> Provas</a>
-            <a href="#" class="nav-item"><i class='bx bxs-bar-chart-alt-2'></i> Relatórios</a>
-            <a href="#" class="nav-item"><i class='bx bx-calendar-event'></i> Calendário</a>
-        </nav>
+
+    <a class="nav-item active" data-page="dashboard">
+        <i class='bx bx-grid-alt'></i> Dashboard
+    </a>
+
+    <a class="nav-item" data-page="escolas">
+        <i class='bx bxs-school'></i> Escolas
+    </a>
+
+    <a class="nav-item" data-page="coordenadores">
+        <i class='bx bxs-user-detail'></i> Coordenadores
+    </a>
+
+    <a class="nav-item" data-page="professores">
+        <i class='bx bxs-chalkboard'></i> Professores
+    </a>
+
+    <a class="nav-item" data-page="alunos">
+        <i class='bx bxs-user'></i> Alunos
+    </a>
+
+    <a class="nav-item" data-page="provas">
+        <i class='bx bxs-file'></i> Provas
+    </a>
+
+    <a class="nav-item" data-page="relatorios">
+        <i class='bx bxs-bar-chart-alt-2'></i> Relatórios
+    </a>
+
+    <a class="nav-item" data-page="calendario">
+        <i class='bx bx-calendar-event'></i> Calendário
+    </a>
+
+</nav>
 
         <div class="sidebar-footer">
             <a href="#" class="nav-item"><i class='bx bx-cog'></i> Configurações</a>
@@ -63,50 +88,47 @@
                 </div>
             </div>
         </header>
-
+<div id="dashboard-page" class="page-content">
         <section class="dashboard-intro">
-            <h2>Painel Administrativo</h2>
+            <h1>Olá, Carlos!</h1>
             <p>Visão geral do sistema de provas do Estado de Sergipe</p>
         </section>
 
         <!-- Cards -->
-        <div class="status-grid">
-            <div class="card card-blue">
-                <div class="card-content">
-                    <span>Escolas</span>
-                    <h3>245</h3>
-                    <p>Cadastradas no sistema</p>
-                </div>
-                <i class='bx bxs-building card-icon'></i>
-            </div>
-
-            <div class="card card-green">
-                <div class="card-content">
-                    <span>Professores</span>
-                    <h3>3.420</h3>
-                    <p>Ativos</p>
-                </div>
-                <i class='bx bxs-graduation card-icon'></i>
-            </div>
-
-            <div class="card card-purple">
-                <div class="card-content">
-                    <span>Alunos</span>
-                    <h3>85.600</h3>
-                    <p>Matriculados</p>
-                </div>
-                <i class='bx bxs-group card-icon'></i>
-            </div>
-
-            <div class="card card-white">
-                <div class="card-content">
-                    <span>Provas</span>
-                    <h3>12.450</h3>
-                    <p class="trend-up">Aplicadas este ano <br><span>+18% em relação ao mês anterior</span></p>
-                </div>
-                <i class='bx bxs-file card-icon'></i>
-            </div>
-        </div>
+         <div class="stats">
+                        <div class="stat-card primary">
+                            <div class="stat-data">
+                                <div class="stat-label">Escolas</div>
+                                <div class="stat-value">245</div>
+                                <div class="stat-note">Cadastradas no sistema</div>
+                            </div>
+                            <div class="stat-icon"><i class='bx bxs-building'></i></div>
+                        </div>
+                        <div class="stat-card success">
+                            <div class="stat-data">
+                                <div class="stat-label">Professores</div>
+                                <div class="stat-value">3.420</div>
+                                <div class="stat-note">Ativos</div>
+                            </div>
+                            <div class="stat-icon"><i class='bx bxs-graduation'></i></div>
+                        </div>
+                        <div class="stat-card warning">
+                            <div class="stat-data">
+                                <div class="stat-label">Alunos</div>
+                                <div class="stat-value">85.600</div>
+                                <div class="stat-note">Matriculados</div>
+                            </div>
+                            <div class="stat-icon"><i class='bx bxs-group'></i></div>
+                        </div>
+                        <div class="stat-card info">
+                            <div class="stat-data">
+                                <div class="stat-label2">Provas</div>
+                                <div class="stat-value2">12.450</div>
+                                <div class="stat-note positive">+18% em relação ao mês anterior</div>
+                            </div>
+                            <div class="stat-icon"><i class='bx bxs-file '></i></div>
+                        </div>
+                    </div>
 
         <!-- Conteúdo -->
         <div class="content-grid">
@@ -167,30 +189,36 @@
             </div>
 
             <!-- Calendário -->
-          <div class="calendar">
-  <div class="calendar-card">
-    <div class="calendar-header">
-      <button class="nav-btn">&#10094;</button>
-      <h3>Abril 2026</h3>
-      <button class="nav-btn">&#10095;</button>
-    </div>
-
-    <div class="calendar-weekdays">
-      <span>Dom</span>
-      <span>Seg</span>
-      <span>Ter</span>
-      <span>Qua</span>
-      <span>Qui</span>
-      <span>Sex</span>
-      <span>Sáb</span>
-    </div>
-
-    <div class="calendar-days">
-    
-    </div>
-  </div>
-</div>
-        </div>
+           <div class="right-column">
+                            <div class="card calendar-card">
+                                <div class="card-header">
+                                    <h2 id="calendarTitle"><i class='bx bx-calendar'></i> Abril 2026</h2>
+                                    <div class="calendar-nav">
+                                        <button class="cal-nav" id="prevMonth"><i class='bx bx-chevron-left'></i></button>
+                                        <button class="cal-nav" id="nextMonth"><i class='bx bx-chevron-right'></i></button>
+                                    </div>
+                                </div>
+                                <div class="calendar">
+                                    <div class="calendar-weekdays">
+                                        <span>Dom</span>
+                                        <span>Seg</span>
+                                        <span>Ter</span>
+                                        <span>Qua</span>
+                                        <span>Qui</span>
+                                        <span>Sex</span>
+                                        <span>Sáb</span>
+                                    </div>
+                                    <div class="calendar-days" id="calendarDays"></div>
+                                </div>
+                                <div class="calendar-legend">
+                                    <div class="legend"><i class='bx bx-calendar-check'></i><span class="dot exam"></span> Provas</div>
+                                    <div class="legend"><i class='bx bx-time'></i><span class="dot deadline"></span> Prazos</div>
+                                    <div class="legend"><i class='bx bx-group'></i><span class="dot meeting"></span> Reuniões</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
 
         <!-- Ações -->
         <div class="section-card" style="margin-top: 20px;">
@@ -214,9 +242,166 @@
                 </div>
             </div>
         </div>
+    </div>
+<!-- ALUNOS -->
+<div id="alunos-page" class="page-content" style="display: none;">
 
-    </main>
+    <section class="dashboard-intro alunos-header">
+
+        <div>
+            <h1>Gerenciamento de Alunos</h1>
+            <p>Cadastre e gerencie os alunos do sistema</p>
+        </div>
+
+        <div class="alunos-actions">
+
+            <button class="btn-light">
+                <i class='bx bx-upload'></i>
+                Importar CSV
+            </button>
+
+            <button class="btn-light">
+                <i class='bx bx-download'></i>
+                Exportar
+            </button>
+
+            <button class="btn-green">
+                <i class='bx bx-plus'></i>
+                Novo Aluno
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- BUSCA -->
+    <div class="alunos-topbar">
+
+        <div class="search-alunos">
+            <i class='bx bx-search'></i>
+            <input type="text" placeholder="Buscar por nome, matrícula, turma ou escola...">
+        </div>
+
+        <div class="results-count">
+            <i class='bx bx-group'></i>
+            <span>8 alunos encontrados</span>
+        </div>
+
+    </div>
+
+    <!-- TABELA -->
+    <div class="table-card">
+
+        <div class="table-header">
+            <span>Aluno</span>
+            <span>Matrícula</span>
+            <span>Turma</span>
+            <span>Escola</span>
+            <span>Status</span>
+            <span>Ações</span>
+        </div>
+
+        <div id="students-list"></div>
+
+<!-- PAGINAÇÃO -->
+<div class="table-pagination">
+
+    <div class="pagination-info">
+        Mostrando 1-8 de 8 alunos
+    </div>
+
+    <div class="pagination-controls">
+
+        <button class="page-btn disabled">
+            Anterior
+        </button>
+
+        <button class="page-number active">1</button>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+
+        <button class="page-btn">
+            Próximo
+        </button>
+
+    </div>
+
 </div>
-<script src="script.js"></script>
+    </div>
+
+</div>
+
+<!-- ESCOLAS -->
+<div id="escolas-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Gerenciamento de Escolas</h1>
+        <p>Cadastre e gerencie as escolas</p>
+    </section>
+
+</div>
+
+<!-- COORDENADORES -->
+<div id="coordenadores-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Gerenciamento de Coordenadores</h1>
+        <p>Cadastre e gerencie os coordenadores</p>
+    </section>
+
+</div>
+
+<!-- PROFESSORES -->
+<div id="professores-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Gerenciamento de Professores</h1>
+        <p>Cadastre e gerencie os professores</p>
+    </section>
+
+</div>
+
+<!-- PROVAS -->
+<div id="provas-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Gerenciamento de Provas</h1>
+        <p>Cadastre e gerencie as provas</p>
+    </section>
+
+</div>
+
+<!-- RELATÓRIOS -->
+<div id="relatorios-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Relatórios</h1>
+        <p>Visualize estatísticas do sistema</p>
+    </section>
+
+</div>
+
+<!-- CALENDÁRIO -->
+<div id="calendario-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Calendário</h1>
+        <p>Gerencie eventos e provas</p>
+    </section>
+
+</div>
+
+<!-- CONFIGURAÇÕES -->
+<div id="configuracoes-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro">
+        <h1>Configurações</h1>
+        <p>Gerencie as configurações do sistema</p>
+    </section>
+
+</div>
+</main>
+</div>
+<script src="javascript.js"></script>
 </body>
 </html>

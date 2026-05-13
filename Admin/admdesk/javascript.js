@@ -1,83 +1,56 @@
-// Seletores
-const daysContainer = document.querySelector(".calendar-days");
-const monthTitle = document.querySelector(".calendar-header h3");
-const prevBtn = document.querySelector(".nav-btn:first-child");
-const nextBtn = document.querySelector(".nav-btn:last-child");
+const calendarDays = document.getElementById("calendarDays");
+const prevBtn = document.getElementById("prevMonth");
+const nextBtn = document.getElementById("nextMonth");
+const calendarTitle = document.getElementById("calendarTitle");
 
-// Data atual
 let currentDate = new Date();
 
-// Função para renderizar calendário
 function renderCalendar(date) {
+    calendarDays.innerHTML = "";
+
     const year = date.getFullYear();
     const month = date.getMonth();
 
-    // Nome do mês
-    const monthNames = [
+    const months = [
         "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
         "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
     ];
 
-    monthTitle.textContent = `${monthNames[month]} ${year}`;
+    // Atualiza título
+    calendarTitle.innerHTML = `<i class='bx bx-calendar'></i> ${months[month]} ${year}`;
 
-    daysContainer.innerHTML = "";
-
-    // Primeiro dia do mês
     const firstDay = new Date(year, month, 1).getDay();
-
-    // Último dia do mês
     const lastDate = new Date(year, month + 1, 0).getDate();
 
-    // Último dia do mês anterior
-    const prevLastDate = new Date(year, month, 0).getDate();
-
-    // Dias do mês anterior (muted)
-    for (let i = firstDay; i > 0; i--) {
-        const div = document.createElement("div");
-        div.classList.add("day", "muted");
-        div.textContent = prevLastDate - i + 1;
-        daysContainer.appendChild(div);
-    }
-
-    // Dias do mês atual
     const today = new Date();
 
-    for (let i = 1; i <= lastDate; i++) {
-        const div = document.createElement("div");
-        div.classList.add("day");
-        div.textContent = i;
+    // espaços vazios antes do início do mês
+    for (let i = 0; i < firstDay; i++) {
+        const empty = document.createElement("div");
+        empty.classList.add("calendar-day", "empty");
+        calendarDays.appendChild(empty);
+    }
 
-        // Marca o dia atual
+    // dias do mês
+    for (let day = 1; day <= lastDate; day++) {
+        const dayElement = document.createElement("div");
+        dayElement.classList.add("calendar-day");
+        dayElement.textContent = day;
+
+        // marcar dia atual
         if (
-            i === today.getDate() &&
+            day === today.getDate() &&
             month === today.getMonth() &&
             year === today.getFullYear()
         ) {
-            div.classList.add("active");
+            dayElement.classList.add("today");
         }
 
-        // Clique no dia
-        div.addEventListener("click", () => {
-            document.querySelectorAll(".day").forEach(d => d.classList.remove("active"));
-            div.classList.add("active");
-        });
-
-        daysContainer.appendChild(div);
-    }
-
-    // Completar com dias do próximo mês
-    const totalDays = daysContainer.children.length;
-    const nextDays = 42 - totalDays;
-
-    for (let i = 1; i <= nextDays; i++) {
-        const div = document.createElement("div");
-        div.classList.add("day", "muted");
-        div.textContent = i;
-        daysContainer.appendChild(div);
+        calendarDays.appendChild(dayElement);
     }
 }
 
-// Botões
+// botões
 prevBtn.addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar(currentDate);
@@ -88,38 +61,189 @@ nextBtn.addEventListener("click", () => {
     renderCalendar(currentDate);
 });
 
-// Inicializa
+// iniciar
 renderCalendar(currentDate);
+// itens nav
+const navItems = document.querySelectorAll(".nav-item");
 
-const links = document.querySelectorAll(".menu a");
+const pages = document.querySelectorAll(".page-content");
 
-links.forEach(link => {
-  link.addEventListener("click", () => {
-    links.forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
-  });
+navItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        // remove active
+        navItems.forEach(nav => {
+            nav.classList.remove("active");
+        });
+
+        item.classList.add("active");
+
+        const page = item.dataset.page;
+
+        // esconde todas
+        pages.forEach(p => {
+            p.style.display = "none";
+        });
+
+        // mostra página clicada
+        const selectedPage = document.getElementById(`${page}-page`);
+
+        if(selectedPage) {
+            selectedPage.style.display = "block";
+        }
+
+    });
+
 });
+/* =========================
+   ALUNOS
+========================= */
 
-const notif = document.querySelector(".notifications");
-const badge = document.querySelector(".badge");
+const students = [
+    {
+        initials: "JS",
+        name: "João Silva",
+        email: "joao.silva@aluno.se.gov.br",
+        matricula: "2026001",
+        turma: "9º Ano A",
+        escola: "E.E. João Alves",
+        status: "Ativo"
+    },
 
-notif.addEventListener("click", () => {
-  badge.style.display = "none";
-});const searchInput = document.querySelector(".search-bar input");
-const items = document.querySelectorAll(".list-item");
+    {
+        initials: "MO",
+        name: "Maria Oliveira",
+        email: "maria.oliveira@aluno.se.gov.br",
+        matricula: "2026002",
+        turma: "9º Ano A",
+        escola: "E.E. João Alves",
+        status: "Ativo"
+    },
 
-searchInput.addEventListener("input", () => {
-  const value = searchInput.value.toLowerCase();
+    {
+        initials: "PS",
+        name: "Pedro Santos",
+        email: "pedro.santos@aluno.se.gov.br",
+        matricula: "2026003",
+        turma: "8º Ano B",
+        escola: "E.E. Maria do Carmo",
+        status: "Ativo"
+    },
 
-  items.forEach(item => {
-    const text = item.innerText.toLowerCase();
-    item.style.display = text.includes(value) ? "flex" : "none";
-  });
-});
+    {
+        initials: "AC",
+        name: "Ana Costa",
+        email: "ana.costa@aluno.se.gov.br",
+        matricula: "2026004",
+        turma: "7º Ano A",
+        escola: "E.E. Dom José Thomaz",
+        status: "Inativo"
+    },
 
+    {
+        initials: "LF",
+        name: "Lucas Ferreira",
+        email: "lucas.ferreira@aluno.se.gov.br",
+        matricula: "2026005",
+        turma: "6º Ano C",
+        escola: "E.E. Tobias Barreto",
+        status: "Ativo"
+    },
 
-document.querySelectorAll(".action-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    alert("Função em desenvolvimento");
-  });
-});
+    {
+        initials: "JL",
+        name: "Juliana Lima",
+        email: "juliana.lima@aluno.se.gov.br",
+        matricula: "2026006",
+        turma: "9º Ano B",
+        escola: "E.E. João Alves",
+        status: "Ativo"
+    },
+
+    {
+        initials: "MS",
+        name: "Marcos Souza",
+        email: "marcos.souza@aluno.se.gov.br",
+        matricula: "2026007",
+        turma: "8º Ano A",
+        escola: "E.E. Maria do Carmo",
+        status: "Ativo"
+    },
+
+    {
+        initials: "CM",
+        name: "Carla Mendes",
+        email: "carla.mendes@aluno.se.gov.br",
+        matricula: "2026008",
+        turma: "7º Ano B",
+        escola: "E.E. Dom José Thomaz",
+        status: "Ativo"
+    }
+];
+
+const studentsList = document.getElementById("students-list");
+
+function renderStudents() {
+
+    studentsList.innerHTML = "";
+
+    students.forEach(student => {
+
+        const row = document.createElement("div");
+
+        row.classList.add("student-row");
+
+        row.innerHTML = `
+
+            <div class="student-info">
+
+                <div class="student-avatar">
+                    ${student.initials}
+                </div>
+
+                <div>
+                    <strong>${student.name}</strong>
+                    <div class="student-email">
+                        ${student.email}
+                    </div>
+                </div>
+
+            </div>
+
+            <div>${student.matricula}</div>
+
+            <div>
+                <span class="class-badge">
+                    ${student.turma}
+                </span>
+            </div>
+
+            <div>${student.escola}</div>
+
+            <div>
+
+                <span class="${
+                    student.status === "Ativo"
+                    ? "status-active"
+                    : "status-inactive"
+                }">
+
+                    ${student.status}
+
+                </span>
+
+            </div>
+
+            <div class="action-menu">
+                <i class='bx bx-dots-vertical-rounded'></i>
+            </div>
+        `;
+
+        studentsList.appendChild(row);
+
+    });
+
+}
+
+renderStudents();
