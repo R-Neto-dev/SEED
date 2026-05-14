@@ -1,68 +1,67 @@
 const calendarDays = document.getElementById("calendarDays");
-const prevBtn = document.getElementById("prevMonth");
-const nextBtn = document.getElementById("nextMonth");
-const calendarTitle = document.getElementById("calendarTitle");
+const monthYear = document.getElementById("monthYear");
+const prevMonth = document.getElementById("prevMonth");
+const nextMonth = document.getElementById("nextMonth");
 
 let currentDate = new Date();
 
-function renderCalendar(date) {
-    calendarDays.innerHTML = "";
+const months = [
+    "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+    "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+];
 
-    const year = date.getFullYear();
-    const month = date.getMonth();
+// evita quebra total do JS
+if (calendarDays && monthYear && prevMonth && nextMonth) {
 
-    const months = [
-        "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-        "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
-    ];
+    function renderCalendar(date) {
 
-    // Atualiza título
-    calendarTitle.innerHTML = `<i class='bx bx-calendar'></i> ${months[month]} ${year}`;
+        calendarDays.innerHTML = "";
 
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
+        const year = date.getFullYear();
+        const month = date.getMonth();
 
-    const today = new Date();
+        monthYear.textContent = `${months[month]} ${year}`;
 
-    // espaços vazios antes do início do mês
-    for (let i = 0; i < firstDay; i++) {
-        const empty = document.createElement("div");
-        empty.classList.add("calendar-day", "empty");
-        calendarDays.appendChild(empty);
-    }
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDate = new Date(year, month + 1, 0).getDate();
 
-    // dias do mês
-    for (let day = 1; day <= lastDate; day++) {
-        const dayElement = document.createElement("div");
-        dayElement.classList.add("calendar-day");
-        dayElement.textContent = day;
+        const today = new Date();
 
-        // marcar dia atual
-        if (
-            day === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
-        ) {
-            dayElement.classList.add("today");
+        for (let i = 0; i < firstDay; i++) {
+            const empty = document.createElement("div");
+            calendarDays.appendChild(empty);
         }
 
-        calendarDays.appendChild(dayElement);
+        for (let day = 1; day <= lastDate; day++) {
+
+            const dayElement = document.createElement("div");
+            dayElement.classList.add("calendar-day");
+            dayElement.textContent = day;
+
+            if (
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
+            ) {
+                dayElement.classList.add("today");
+            }
+
+            calendarDays.appendChild(dayElement);
+        }
     }
+
+    prevMonth.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+    });
+
+    nextMonth.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
+
+    renderCalendar(currentDate);
 }
-
-// botões
-prevBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar(currentDate);
-});
-
-nextBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar(currentDate);
-});
-
-// iniciar
-renderCalendar(currentDate);
 // itens nav
 const navItems = document.querySelectorAll(".nav-item");
 
@@ -91,6 +90,13 @@ navItems.forEach(item => {
 
         if(selectedPage) {
             selectedPage.style.display = "block";
+        }
+                if (page === "alunos") {
+            renderStudents();
+        }
+
+        if (page === "dashboard") {
+            renderCalendar(currentDate);
         }
 
     });
@@ -186,53 +192,38 @@ const studentsList = document.getElementById("students-list");
 
 function renderStudents() {
 
+    const studentsList = document.getElementById("students-list");
+
+    if (!studentsList) {
+        console.log("students-list ainda não existe");
+        return;
+    }
+
     studentsList.innerHTML = "";
 
     students.forEach(student => {
-
         const row = document.createElement("div");
-
         row.classList.add("student-row");
 
         row.innerHTML = `
-
             <div class="student-info">
-
-                <div class="student-avatar">
-                    ${student.initials}
-                </div>
-
+                <div class="student-avatar">${student.initials}</div>
                 <div>
                     <strong>${student.name}</strong>
-                    <div class="student-email">
-                        ${student.email}
-                    </div>
+                    <div class="student-email">${student.email}</div>
                 </div>
-
             </div>
 
             <div>${student.matricula}</div>
 
-            <div>
-                <span class="class-badge">
-                    ${student.turma}
-                </span>
-            </div>
+            <div><span class="class-badge">${student.turma}</span></div>
 
             <div>${student.escola}</div>
 
             <div>
-
-                <span class="${
-                    student.status === "Ativo"
-                    ? "status-active"
-                    : "status-inactive"
-                }">
-
+                <span class="${student.status === "Ativo" ? "status-active" : "status-inactive"}">
                     ${student.status}
-
                 </span>
-
             </div>
 
             <div class="action-menu">
@@ -241,9 +232,5 @@ function renderStudents() {
         `;
 
         studentsList.appendChild(row);
-
     });
-
 }
-
-renderStudents();

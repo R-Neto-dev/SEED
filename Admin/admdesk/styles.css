@@ -392,128 +392,161 @@ body {
 .action-btn span { font-size: 0.8rem; font-weight: 600; }
 
 /* Calendario */
+
 .calendar-card {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 16px;
-    border: 1px solid #e2e8f0;
+    background: #fff;
+    border-radius: 20px;
+    padding: 18px;
+    border: 1px solid #ececf2;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
-.card-header {
+
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 }
-.card-header h2 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #0f172a;
+
+.calendar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.calendar-title i {
+    font-size: 20px;
+    color: #111827;
+}
+
+.calendar-title h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-nav button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: #f3f4f6;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.calendar-nav button:hover {
+    background: #e5e7eb;
+}
+
+.calendar-nav i {
+    font-size: 18px;
 }
 
 .calendar-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 18px;
     text-align: center;
-    font-size: 11px;
-    color: #64748b;
-    margin-bottom: 8px;
 }
 
 .calendar-weekdays span {
-    padding: 4px 0;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
+    gap: 14px;
 }
 
 .calendar-day {
-   height: 32px;
+    height: 28px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
-    border-radius: 8px;
+    position: relative;
+    font-weight: 600;
+    font-size: 13;
+    color: #111827;
     cursor: pointer;
-    transition: 0.2s;
+    transition: .2s ease;
 }
+
 .calendar-day:hover {
-    background: #e2e8f0;
-}
-
-.calendar-day.has-event.exam::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    width: 3px;
-    height: 3px;
-    background: #3b82f6;
-    border-radius: 50%;
-}
-
-.calendar-day.has-event.deadline::after {
-    background: #f59e0b;
-}
-
-.calendar-day.has-event.meeting::after {
-    background: #8b5cf6;
+    background: #f3f4f6;
 }
 
 .calendar-day.today {
-    background: #0f172a;
+    background: #111827;
     color: white;
-    font-weight: 600;
-}
-.calendar-day.empty {
-    pointer-events: none;
 }
 
-.calendar-legend {
+.calendar-day.event::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 8px;
+}
+
+.calendar-day.prova::after {
+    background: #3b82f6;
+}
+
+.calendar-day.prazo::after {
+    background: #f59e0b;
+}
+
+.calendar-day.reuniao::after {
+    background: #8b5cf6;
+}
+
+.calendar-footer {
     display: flex;
-    gap: 25px;
-    margin-top: 12px;
-    padding-top: 8px;
-    border-top: 1px solid #eef2f8;
+    gap: 24px;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid #f1f5f9;
 }
 
 .legend {
     display: flex;
     align-items: center;
-    gap: 3px;
-    font-size: 11px;
-    color: #334155;
+    gap: 8px;
 }
 
-.legend i {
-    font-size: 0.9rem;
+.legend p {
+    font-size: 14px;
+    color: #6b7280;
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
 }
 
-.dot.exam { background: #3b82f6; }
-.dot.deadline { background: #f59e0b; }
-.dot.meeting { background: #8b5cf6; }
-
-.cal-nav {
-    background: #f1f5f9;
-    border: none;
-    width: 26px;
-    height: 26px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.dot.prova {
+    background: #3b82f6;
 }
 
-.cal-nav i {
-    font-size: 14px;
+.dot.prazo {
+    background: #f59e0b;
+}
+
+.dot.reuniao {
+    background: #8b5cf6;
 }
 /*Aluno */
 

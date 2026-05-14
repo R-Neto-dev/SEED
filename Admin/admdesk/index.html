@@ -189,30 +189,62 @@
             </div>
 
             <!-- Calendário -->
-          <div class="calendar">
-  <div class="calendar-card">
+
+<div class="calendar-card">
+
     <div class="calendar-header">
-      <button class="nav-btn">&#10094;</button>
-      <h3>Abril 2026</h3>
-      <button class="nav-btn">&#10095;</button>
+
+        <div class="calendar-title">
+            <i class='bx bx-calendar'></i>
+            <h3 id="monthYear"></h3>
+        </div>
+
+        <div class="calendar-nav">
+
+            <button id="prevMonth">
+                <i class='bx bx-chevron-left'></i>
+            </button>
+
+            <button id="nextMonth">
+                <i class='bx bx-chevron-right'></i>
+            </button>
+
+        </div>
+
     </div>
 
     <div class="calendar-weekdays">
-      <span>Dom</span>
-      <span>Seg</span>
-      <span>Ter</span>
-      <span>Qua</span>
-      <span>Qui</span>
-      <span>Sex</span>
-      <span>Sáb</span>
+        <span>Dom</span>
+        <span>Seg</span>
+        <span>Ter</span>
+        <span>Qua</span>
+        <span>Qui</span>
+        <span>Sex</span>
+        <span>Sáb</span>
     </div>
 
-    <div class="calendar-days">
-    
-    </div>
-  </div>
-</div>
+    <div class="calendar-days" id="calendarDays"></div>
+
+    <div class="calendar-footer">
+
+        <div class="legend">
+            <span class="dot prova"></span>
+            <p>Provas</p>
         </div>
+
+        <div class="legend">
+            <span class="dot prazo"></span>
+            <p>Prazos</p>
+        </div>
+
+        <div class="legend">
+            <span class="dot reuniao"></span>
+            <p>Reuniões</p>
+        </div>
+
+    </div>
+
+</div>
 
         <!-- Ações -->
         <div class="section-card" style="margin-top: 20px;">
@@ -237,6 +269,8 @@
             </div>
         </div>
     </div>
+</div>
+
 <!-- ALUNOS -->
 <div id="alunos-page" class="page-content" style="display: none;">
 
@@ -396,6 +430,6 @@
 </div>
 </main>
 </div>
-<script src="javascript.js"></script>
+<script src="javascript.js" defer></script>
 </body>
 </html>
