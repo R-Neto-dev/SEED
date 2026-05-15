@@ -249,6 +249,79 @@ function fillProvasTable() {
     }
 }
 
+function fillResultadosTable() {
+
+    const resultados = [
+
+    {
+        turma: "6º Ano B",
+        prova: "Prova Bimestral",
+        media: "7.5",
+        participacao: "30/32",
+        status: "Regular"
+    },
+
+    {
+        turma: "7º Ano C",
+        prova: "Avaliação Final",
+        media: "9.0",
+        participacao: "30/30",
+        status: "Excelente"
+    },
+
+    {
+        turma: "8º Ano A",
+        prova: "Prova Mensal",
+        media: "7.5",
+        participacao: "28/32",
+        status: "Regular"
+    }
+];
+
+    const container = document.getElementById('resultadosTableBody');
+
+    if(container) {
+
+        container.innerHTML = resultados.map(resultado => {
+
+            let statusClass = '';
+
+            if(resultado.status === 'Excelente') {
+                statusClass = 'ativa';
+            }
+
+            else if(resultado.status === 'Regular') {
+                statusClass = 'encerrada';
+            }
+
+            else {
+                statusClass = 'rascunho';
+            }
+
+            return `
+                <tr>
+
+                    <td>${resultado.turma}</td>
+
+                    <td>${resultado.prova}</td>
+
+                    <td>${resultado.media}</td>
+
+                    <td>${resultado.participacao}</td>
+
+                    <td>
+                        <span class="status ${statusClass}">
+                            ${resultado.status}
+                        </span>
+                    </td>
+
+                </tr>
+            `;
+
+        }).join('');
+    }
+}
+
 // Logout
 function logout() {
     const userName = document.querySelector('.user-name')?.textContent.trim() || 'usuário';
@@ -266,6 +339,7 @@ function init() {
     fillProvasTable();
     fillTurmas();
     fillFullResults();
+    fillResultadosTable();
     mobileMenu();
     initCalendarNav();
     logout();

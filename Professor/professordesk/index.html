@@ -268,9 +268,79 @@
 
           <!-- PÁGINAS SECUNDÁRIAS -->
           <div class="page" id="resultados-page">
-            <div class="card">
-              <div class="card-header"><h2>Todos os Resultados</h2></div>
-              <div id="allResultsList" class="results-list-full"></div>
+            <div class="provas-header">
+              <div>
+                <h1>Resultados das Turmas</h1>
+                <p>Acompanhe o desempenho geral dos alunos</p>
+              </div>
+            </div>
+
+            <!-- CARDS -->
+            <div class="stats">
+              <div class="stat-card primary">
+                <div class="stat-data">
+                  <div class="stat-label">Média Geral</div>
+                  <div class="stat-value">7.8</div>
+                  <div class="stat-note">Todas as turmas</div>
+                </div>
+
+                <div class="stat-icon">
+                  <i class="bx bx-line-chart"></i>
+                </div>
+              </div>
+
+              <div class="stat-card success">
+                <div class="stat-data">
+                  <div class="stat-label">Aprovados</div>
+                  <div class="stat-value">82%</div>
+                  <div class="stat-note">Neste bimestre</div>
+                </div>
+
+                <div class="stat-icon">
+                  <i class="bx bx-check-circle"></i>
+                </div>
+              </div>
+
+              <div class="stat-card warning">
+                <div class="stat-data">
+                  <div class="stat-label">Recuperação</div>
+                  <div class="stat-value">12</div>
+                  <div class="stat-note">Alunos abaixo da média</div>
+                </div>
+
+                <div class="stat-icon">
+                  <i class="bx bx-error-circle"></i>
+                </div>
+              </div>
+
+              <div class="stat-card info">
+                <div class="stat-data">
+                  <div class="stat-label2">Participação</div>
+                  <div class="stat-value2">91%</div>
+                  <div class="stat-note2">Responderam as provas</div>
+                </div>
+
+                <div class="stat-icon">
+                  <i class="bx bx-bar-chart-alt"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- TABELA -->
+            <div class="card provas-table-card">
+              <table class="provas-table">
+                <thead>
+                  <tr>
+                    <th>Turma</th>
+                    <th>Prova</th>
+                    <th>Média</th>
+                    <th>Participação</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="resultadosTableBody"></tbody>
+              </table>
             </div>
           </div>
           <div class="page" id="calendario-page">

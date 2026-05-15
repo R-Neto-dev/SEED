@@ -285,8 +285,8 @@ body {
     border-radius: 9px;
     padding: 14px;
     display: flex;
-    align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: flex-start;
     box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
 
@@ -316,36 +316,27 @@ body {
     background: #3d54a7; 
     padding: 8px; 
     border-radius: 9px;
-    margin-bottom: 30px;
-    margin-right: 2px;
-    margin-left: 110px;
 }
+
 .stat-card.success .stat-icon i { 
     color: white; 
     background: #25c269; 
     padding: 8px; 
     border-radius: 9px;
-    margin-bottom: 30px;
-    margin-right: 2px;
-    margin-left: 130px;
 }
+
 .stat-card.warning .stat-icon i { 
     color: #ffffff; 
     background: #905dff; 
     padding: 7px; 
     border-radius: 9px;
-    margin-bottom: 30px;
-    margin-right: 2px;
-    margin-left: 73px;
 }
+
 .stat-card.info .stat-icon i { 
     color: #1616b1; 
     background: #e3e3f0; 
     padding: 8px; 
     border-radius: 9px;
-    margin-bottom: 30px;
-    margin-right: 2px;
-    margin-left: 130px;
 }
 
 .stat-label {
