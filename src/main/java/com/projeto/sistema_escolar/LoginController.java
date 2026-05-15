@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -14,21 +13,18 @@ import java.util.Optional;
 public class LoginController {
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioService service; // Agora chamamos o Service, não o Repository
 
     @PostMapping("/login")
     public ResponseEntity<?> logar(@RequestBody Map<String, String> dados) {
         String email = dados.get("email");
         String senha = dados.get("senha");
 
-        Optional<Usuario> usuarioOpt = repository.findByEmail(email);
+        // Pedimos para o serviço validar o login
+        LoginResponse response = service.autenticar(email, senha);
 
-        if (usuarioOpt.isPresent()) {
-            Usuario user = usuarioOpt.get();
-
-            if (user.getSenha().equals(senha)) {
-                return ResponseEntity.ok(user);
-            }
+        if (response != null) {
+            return ResponseEntity.ok(response);
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("E-mail ou senha incorretos!");
