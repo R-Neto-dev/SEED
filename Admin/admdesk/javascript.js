@@ -1,125 +1,236 @@
-// Seletores
-const daysContainer = document.querySelector(".calendar-days");
-const monthTitle = document.querySelector(".calendar-header h3");
-const prevBtn = document.querySelector(".nav-btn:first-child");
-const nextBtn = document.querySelector(".nav-btn:last-child");
+const calendarDays = document.getElementById("calendarDays");
+const monthYear = document.getElementById("monthYear");
+const prevMonth = document.getElementById("prevMonth");
+const nextMonth = document.getElementById("nextMonth");
 
-// Data atual
 let currentDate = new Date();
 
-// Função para renderizar calendário
-function renderCalendar(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth();
+const months = [
+    "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+    "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+];
 
-    // Nome do mês
-    const monthNames = [
-        "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-        "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
-    ];
+// evita quebra total do JS
+if (calendarDays && monthYear && prevMonth && nextMonth) {
 
-    monthTitle.textContent = `${monthNames[month]} ${year}`;
+    function renderCalendar(date) {
 
-    daysContainer.innerHTML = "";
+        calendarDays.innerHTML = "";
 
-    // Primeiro dia do mês
-    const firstDay = new Date(year, month, 1).getDay();
+        const year = date.getFullYear();
+        const month = date.getMonth();
 
-    // Último dia do mês
-    const lastDate = new Date(year, month + 1, 0).getDate();
+        monthYear.textContent = `${months[month]} ${year}`;
 
-    // Último dia do mês anterior
-    const prevLastDate = new Date(year, month, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDate = new Date(year, month + 1, 0).getDate();
 
-    // Dias do mês anterior (muted)
-    for (let i = firstDay; i > 0; i--) {
-        const div = document.createElement("div");
-        div.classList.add("day", "muted");
-        div.textContent = prevLastDate - i + 1;
-        daysContainer.appendChild(div);
-    }
+        const today = new Date();
 
-    // Dias do mês atual
-    const today = new Date();
-
-    for (let i = 1; i <= lastDate; i++) {
-        const div = document.createElement("div");
-        div.classList.add("day");
-        div.textContent = i;
-
-        // Marca o dia atual
-        if (
-            i === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
-        ) {
-            div.classList.add("active");
+        for (let i = 0; i < firstDay; i++) {
+            const empty = document.createElement("div");
+            calendarDays.appendChild(empty);
         }
 
-        // Clique no dia
-        div.addEventListener("click", () => {
-            document.querySelectorAll(".day").forEach(d => d.classList.remove("active"));
-            div.classList.add("active");
+        for (let day = 1; day <= lastDate; day++) {
+
+            const dayElement = document.createElement("div");
+            dayElement.classList.add("calendar-day");
+            dayElement.textContent = day;
+
+            if (
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
+            ) {
+                dayElement.classList.add("today");
+            }
+
+            calendarDays.appendChild(dayElement);
+        }
+    }
+
+    prevMonth.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+    });
+
+    nextMonth.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
+
+    renderCalendar(currentDate);
+}
+// itens nav
+const navItems = document.querySelectorAll(".nav-item");
+
+const pages = document.querySelectorAll(".page-content");
+
+navItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        // remove active
+        navItems.forEach(nav => {
+            nav.classList.remove("active");
         });
 
-        daysContainer.appendChild(div);
+        item.classList.add("active");
+
+        const page = item.dataset.page;
+
+        // esconde todas
+        pages.forEach(p => {
+            p.style.display = "none";
+        });
+
+        // mostra página clicada
+        const selectedPage = document.getElementById(`${page}-page`);
+
+        if(selectedPage) {
+            selectedPage.style.display = "block";
+        }
+                if (page === "alunos") {
+            renderStudents();
+        }
+
+        if (page === "dashboard") {
+            renderCalendar(currentDate);
+        }
+
+    });
+
+});
+/* =========================
+   ALUNOS
+========================= */
+
+const students = [
+    {
+        initials: "JS",
+        name: "João Silva",
+        email: "joao.silva@aluno.se.gov.br",
+        matricula: "2026001",
+        turma: "9º Ano A",
+        escola: "E.E. João Alves",
+        status: "Ativo"
+    },
+
+    {
+        initials: "MO",
+        name: "Maria Oliveira",
+        email: "maria.oliveira@aluno.se.gov.br",
+        matricula: "2026002",
+        turma: "9º Ano A",
+        escola: "E.E. João Alves",
+        status: "Ativo"
+    },
+
+    {
+        initials: "PS",
+        name: "Pedro Santos",
+        email: "pedro.santos@aluno.se.gov.br",
+        matricula: "2026003",
+        turma: "8º Ano B",
+        escola: "E.E. Maria do Carmo",
+        status: "Ativo"
+    },
+
+    {
+        initials: "AC",
+        name: "Ana Costa",
+        email: "ana.costa@aluno.se.gov.br",
+        matricula: "2026004",
+        turma: "7º Ano A",
+        escola: "E.E. Dom José Thomaz",
+        status: "Inativo"
+    },
+
+    {
+        initials: "LF",
+        name: "Lucas Ferreira",
+        email: "lucas.ferreira@aluno.se.gov.br",
+        matricula: "2026005",
+        turma: "6º Ano C",
+        escola: "E.E. Tobias Barreto",
+        status: "Ativo"
+    },
+
+    {
+        initials: "JL",
+        name: "Juliana Lima",
+        email: "juliana.lima@aluno.se.gov.br",
+        matricula: "2026006",
+        turma: "9º Ano B",
+        escola: "E.E. João Alves",
+        status: "Ativo"
+    },
+
+    {
+        initials: "MS",
+        name: "Marcos Souza",
+        email: "marcos.souza@aluno.se.gov.br",
+        matricula: "2026007",
+        turma: "8º Ano A",
+        escola: "E.E. Maria do Carmo",
+        status: "Ativo"
+    },
+
+    {
+        initials: "CM",
+        name: "Carla Mendes",
+        email: "carla.mendes@aluno.se.gov.br",
+        matricula: "2026008",
+        turma: "7º Ano B",
+        escola: "E.E. Dom José Thomaz",
+        status: "Ativo"
+    }
+];
+
+const studentsList = document.getElementById("students-list");
+
+function renderStudents() {
+
+    const studentsList = document.getElementById("students-list");
+
+    if (!studentsList) {
+        console.log("students-list ainda não existe");
+        return;
     }
 
-    // Completar com dias do próximo mês
-    const totalDays = daysContainer.children.length;
-    const nextDays = 42 - totalDays;
+    studentsList.innerHTML = "";
 
-    for (let i = 1; i <= nextDays; i++) {
-        const div = document.createElement("div");
-        div.classList.add("day", "muted");
-        div.textContent = i;
-        daysContainer.appendChild(div);
-    }
+    students.forEach(student => {
+        const row = document.createElement("div");
+        row.classList.add("student-row");
+
+        row.innerHTML = `
+            <div class="student-info">
+                <div class="student-avatar">${student.initials}</div>
+                <div>
+                    <strong>${student.name}</strong>
+                    <div class="student-email">${student.email}</div>
+                </div>
+            </div>
+
+            <div>${student.matricula}</div>
+
+            <div><span class="class-badge">${student.turma}</span></div>
+
+            <div>${student.escola}</div>
+
+            <div>
+                <span class="${student.status === "Ativo" ? "status-active" : "status-inactive"}">
+                    ${student.status}
+                </span>
+            </div>
+
+            <div class="action-menu">
+                <i class='bx bx-dots-vertical-rounded'></i>
+            </div>
+        `;
+
+        studentsList.appendChild(row);
+    });
 }
-
-// Botões
-prevBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar(currentDate);
-});
-
-nextBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar(currentDate);
-});
-
-// Inicializa
-renderCalendar(currentDate);
-
-const links = document.querySelectorAll(".menu a");
-
-links.forEach(link => {
-  link.addEventListener("click", () => {
-    links.forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
-  });
-});
-
-const notif = document.querySelector(".notifications");
-const badge = document.querySelector(".badge");
-
-notif.addEventListener("click", () => {
-  badge.style.display = "none";
-});const searchInput = document.querySelector(".search-bar input");
-const items = document.querySelectorAll(".list-item");
-
-searchInput.addEventListener("input", () => {
-  const value = searchInput.value.toLowerCase();
-
-  items.forEach(item => {
-    const text = item.innerText.toLowerCase();
-    item.style.display = text.includes(value) ? "flex" : "none";
-  });
-});
-
-
-document.querySelectorAll(".action-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    alert("Função em desenvolvimento");
-  });
-});

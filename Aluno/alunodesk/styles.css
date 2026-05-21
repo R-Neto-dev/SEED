@@ -669,7 +669,233 @@ body {
     padding: 4px;
 }
 
+/* PÁGINA DE RESULTADOS */
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.page-header h1 i {
+    font-size: 28px;
+    color: #3b82f6;
+}
+
+.page-header p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Filtros */
+.filters-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #475569;
+}
+
+.filter-btn:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.filter-btn.active {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+/* Resumo de desempenho */
+.results-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.summary-icon i {
+    font-size: 28px;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+.summary-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.summary-label {
+    font-size: 11px;
+    color: #64748b;
+}
+
+/* Gráfico */
+.chart-card {
+    margin-bottom: 24px;
+}
+
+.chart-container {
+    padding: 16px 0;
+    max-height: 280px;
+}
+
+.period-select {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1e293b;
+    cursor: pointer;
+}
+
+/* Tabela de resultados */
+.results-full-card {
+    margin-bottom: 24px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 30px;
+    border: 1px solid #e2e8f0;
+}
+
+.search-box i {
+    font-size: 16px;
+    color: #94a3b8;
+}
+
+.search-box input {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 12px;
+    width: 180px;
+}
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+.results-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+    padding: 12px 0;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: 700;
+    font-size: 12px;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+/* Item de resultado na lista completa */
+.results-list-full {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.results-list-full .result-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.2s;
+}
+
+.results-list-full .result-row:hover {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px 8px;
+    margin: 0 -8px;
+}
+
+.result-row .result-name {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.result-row .result-date {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.result-row .result-grade {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.result-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 30px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.result-status.aprovado {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.result-status.reprovado {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.result-status.recuperacao {
+    background: #fef3c7;
+    color: #92400e;
+}
+
 /* RESPONSIVO */
+/* MAIN */
 @media (max-width: 1000px) {
     .stats {
         grid-template-columns: repeat(2, 1fr);
@@ -695,5 +921,50 @@ body {
     }
     .stats {
         grid-template-columns: 1fr;
+    }
+}
+
+/* RESULTADOS PAGE */
+@media (max-width: 800px) {
+    .results-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .results-table-header,
+    .results-list-full .result-row {
+        grid-template-columns: 1fr 0.8fr 0.6fr 0.8fr;
+        font-size: 11px;
+        gap: 8px;
+    }
+    
+    .result-row .result-name {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 600px) {
+    .results-table-header {
+        display: none;
+    }
+    
+    .results-list-full .result-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 12px 0;
+    }
+    
+    .result-row .result-name {
+        width: 100%;
+    }
+    
+    .filters-bar {
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        padding: 4px 12px;
+        font-size: 11px;
     }
 }

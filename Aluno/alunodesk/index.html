@@ -194,7 +194,7 @@
                         <div class="right-column">
                             <div class="card calendar-card">
                                 <div class="card-header">
-                                    <h2><i class='bx bx-calendar'></i> Abril 2026</h2>
+                                    <h2><i class='bx bx-calendar'></i> Maio 2026</h2>
                                     <div class="calendar-nav">
                                         <button class="cal-nav" id="prevMonth"><i class='bx bx-chevron-left'></i></button>
                                         <button class="cal-nav" id="nextMonth"><i class='bx bx-chevron-right'></i></button>
@@ -220,15 +220,93 @@
                 <div class="page" id="minhas-provas-page" style="display: none;">
                     <div class="card"><div class="card-header"><h2>Minhas Provas</h2></div><div id="allExamsList" class="exams-list-full"></div></div>
                 </div>
+                <!-- RESULTADOS! -->
                 <div class="page" id="resultados-page" style="display: none;">
-                    <div class="card"><div class="card-header"><h2>Todos os Resultados</h2></div><div id="allResultsList" class="results-list-full"></div></div>
+                    <!-- Cabeçalho da página -->
+                    <div class="page-header">
+                        <h1><i class='bx bx-line-chart'></i> Meus Resultados</h1>
+                        <p>Histórico completo de todas as suas avaliações</p>
+                    </div>
+
+                <!-- Filtros -->
+                <div class="filters-bar">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="aprovado">Aprovado</button>
+                    <button class="filter-btn" data-filter="reprovado">Reprovado</button>
+                    <button class="filter-btn" data-filter="2026">2026</button>
+                    <button class="filter-btn" data-filter="2025">2025</button>
                 </div>
-                <div class="page" id="calendario-page" style="display: none;">
-                    <div class="card"><div class="card-header"><h2>Calendário Acadêmico</h2></div><div id="fullCalendarContainer"></div></div>
+
+                <!-- Resumo de desempenho -->
+                <div class="results-summary">
+                    <div class="summary-card">
+                        <div class="summary-icon"><i class='bx bx-star'></i></div>
+                        <div class="summary-info">
+                            <span class="summary-value">8.2</span>
+                            <span class="summary-label">Média Geral</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon"><i class='bx bx-check-circle'></i></div>
+                        <div class="summary-info">
+                            <span class="summary-value">12</span>
+                            <span class="summary-label">Provas Realizadas</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon"><i class='bx bx-trophy'></i></div>
+                        <div class="summary-info">
+                            <span class="summary-value">8</span>
+                            <span class="summary-label">Melhor Nota</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon"><i class='bx bx-trending-up'></i></div>
+                        <div class="summary-info">
+                            <span class="summary-value">+15%</span>
+                            <span class="summary-label">Evolução</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="page" id="configuracoes-page" style="display: none;">
-                    <div class="card"><div class="card-header"><h2>Configurações</h2></div><p style="padding: 20px;">Preferências de tema, notificações, etc.</p></div>
+
+                <!-- Gráfico de desempenho -->
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h2><i class='bx bx-line-chart'></i> Evolução das Notas</h2>
+                        <select id="chartPeriod" class="period-select">
+                            <option value="6">Últimos 6 meses</option>
+                            <option value="12">Últimos 12 meses</option>
+                            <option value="all">Todo período</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
                 </div>
+
+                <!-- Lista de resultados -->
+                <div class="card results-full-card">
+                    <div class="card-header">
+                        <h2><i class='bx bx-list-ul'></i> Histórico Completo</h2>
+                        <div class="search-box">
+                            <i class='bx bx-search'></i>
+                            <input type="text" id="searchResult" placeholder="Buscar prova...">
+                        </div>
+                    </div>
+                    <div class="results-table-header">
+                        <span>Prova</span>
+                        <span>Data</span>
+                        <span>Nota</span>
+                        <span>Status</span>
+                    </div>
+                    <div id="allResultsList" class="results-list-full"></div>
+                </div>
+            </div>
+            <div class="page" id="calendario-page" style="display: none;">
+                <div class="card"><div class="card-header"><h2>Calendário Acadêmico</h2></div><div id="fullCalendarContainer"></div></div>
+            </div>
+            <div class="page" id="configuracoes-page" style="display: none;">
+                <div class="card"><div class="card-header"><h2>Configurações</h2></div><p style="padding: 20px;">Preferências de tema, notificações, etc.</p></div>
             </div>
         </main>
     </div>
