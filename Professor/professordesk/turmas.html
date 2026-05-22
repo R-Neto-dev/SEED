@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Resultados | Professor</title>
+    <title>Turmas | Professor</title>
 
     <!-- Boxicons -->
     <link
@@ -47,7 +47,7 @@
             <span>Provas</span>
           </a>
 
-          <a href="turmas.html" class="nav-item">
+          <a href="turmas.html" class="nav-item active">
             <i class="bx bx-group"></i>
             <span>Turmas</span>
           </a>
@@ -57,7 +57,7 @@
             <span>Banco de Questões</span>
           </a>
 
-          <a href="resultados.html" class="nav-item active">
+          <a href="resultados.html" class="nav-item">
             <i class="bx bx-line-chart"></i>
             <span>Resultados</span>
           </a>
@@ -95,7 +95,7 @@
             <!-- Notificação -->
             <button class="notification-btn">
               <i class="bx bx-bell"></i>
-              <span class="notification-badge">2</span>
+              <span class="notification-badge">3</span>
             </button>
 
             <!-- Usuário -->
@@ -104,7 +104,7 @@
 
               <div class="user-details">
                 <div class="user-name">Paula Santos</div>
-                <div class="user-role">Professor</div>
+                <div class="user-role">Professor - Matemática</div>
               </div>
             </div>
           </div>
@@ -112,80 +112,55 @@
 
         <!-- CONTENT -->
         <div class="content">
+          <!-- HEADER -->
           <div class="provas-header">
             <div>
-              <h1>Resultados das Turmas</h1>
-              <p>Acompanhe o desempenho geral dos alunos</p>
+              <h1>Minhas Turmas</h1>
+              <p>
+                Gerencie suas turmas e acompanhe o desempenho dos alunos
+              </p>
             </div>
           </div>
 
-          <!-- CARDS -->
-          <div class="stats">
-            <div class="stat-card primary">
-              <div class="stat-data">
-                <div class="stat-label">Média Geral</div>
-                <div class="stat-value">7.8</div>
-                <div class="stat-note">Todas as turmas</div>
+          <!-- CARDS SUPERIORES -->
+          <div class="turmas-stats">
+            <div class="turma-stat-card">
+              <div class="turma-stat-icon blue">
+                <i class="bx bx-group"></i>
               </div>
 
-              <div class="stat-icon">
-                <i class="bx bx-line-chart"></i>
-              </div>
-            </div>
-
-            <div class="stat-card success">
-              <div class="stat-data">
-                <div class="stat-label">Aprovados</div>
-                <div class="stat-value">82%</div>
-                <div class="stat-note">Neste bimestre</div>
-              </div>
-
-              <div class="stat-icon">
-                <i class="bx bx-check-circle"></i>
+              <div>
+                <h2>4</h2>
+                <span>Turmas Ativas</span>
               </div>
             </div>
 
-            <div class="stat-card warning">
-              <div class="stat-data">
-                <div class="stat-label">Recuperação</div>
-                <div class="stat-value">12</div>
-                <div class="stat-note">Alunos abaixo da média</div>
+            <div class="turma-stat-card">
+              <div class="turma-stat-icon green">
+                <i class="bx bx-book-reader"></i>
               </div>
 
-              <div class="stat-icon">
-                <i class="bx bx-error-circle"></i>
+              <div>
+                <h2>115</h2>
+                <span>Total de Alunos</span>
               </div>
             </div>
 
-            <div class="stat-card info">
-              <div class="stat-data">
-                <div class="stat-label2">Participação</div>
-                <div class="stat-value2">91%</div>
-                <div class="stat-note2">Responderam as provas</div>
-              </div>
-
-              <div class="stat-icon">
+            <div class="turma-stat-card">
+              <div class="turma-stat-icon purple">
                 <i class="bx bx-bar-chart-alt"></i>
               </div>
+
+              <div>
+                <h2>7.5</h2>
+                <span>Média Geral</span>
+              </div>
             </div>
           </div>
 
-          <!-- TABELA -->
-          <div class="card provas-table-card">
-            <table class="provas-table">
-              <thead>
-                <tr>
-                  <th>Turma</th>
-                  <th>Prova</th>
-                  <th>Média</th>
-                  <th>Participação</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
+          <!-- GRID DAS TURMAS -->
+            <div class="turmas-grid" id="turmasGrid"></div>
 
-              <tbody id="resultadosTableBody"></tbody>
-            </table>
-          </div>
         </div>
       </main>
     </div>

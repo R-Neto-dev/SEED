@@ -250,6 +250,99 @@ function fillResultadosTable() {
     }
 }
 
+function fillTurmasCards() {
+
+    const turmas = [
+    {
+        nome: "6º Ano B",
+        materia: "Matemática",
+        alunos: 32,
+        media: 7.5,
+        ultimaProva: "05 Abr 2026"
+    },
+
+    {
+        nome: "7º Ano C",
+        materia: "Matemática",
+        alunos: 30,
+        media: 9.0,
+        ultimaProva: "03 Abr 2026"
+    },
+
+    {
+        nome: "8º Ano A",
+        materia: "Matemática",
+        alunos: 30,
+        media: 8.0,
+        ultimaProva: "01 Abr 2026"
+    },
+
+    {
+        nome: "9º Ano A",
+        materia: "Matemática",
+        alunos: 32,
+        media: 7.8,
+        ultimaProva: "28 Mar 2026"
+    }
+];
+
+    const container = document.getElementById('turmasGrid');
+
+    if(container) {
+
+        container.innerHTML = turmas.map(turma => {
+
+            return `
+
+                <div class="turma-card">
+
+                    <div class="turma-card-top">
+
+                        <div>
+                            <h2>${turma.nome}</h2>
+                            <p>${turma.materia}</p>
+                        </div>
+
+                        <span class="turma-status">
+                            Ativa
+                        </span>
+
+                    </div>
+
+                    <div class="turma-info-grid">
+
+                        <div class="turma-info-box">
+                            <strong>${turma.alunos}</strong>
+                            <span>Alunos</span>
+                        </div>
+
+                        <div class="turma-info-box">
+                            <strong class="green-text">
+                                ${turma.media}
+                            </strong>
+
+                            <span>Média</span>
+                        </div>
+
+                        <div class="turma-info-box">
+                            <strong>${turma.ultimaProva}</strong>
+                            <span>Última Prova</span>
+                        </div>
+
+                    </div>
+
+                    <button class="turma-btn">
+                        Ver Detalhes
+                    </button>
+
+                </div>
+
+            `;
+
+        }).join('');
+    }
+}
+
 // Logout
 function logout() {
     const userName = document.querySelector('.user-name')?.textContent.trim() || 'usuário';
@@ -265,6 +358,7 @@ function init() {
     fillProvasTable();
     fillTurmas();
     fillResultadosTable();
+    fillTurmasCards();
     mobileMenu();
     initCalendarNav();
     logout();

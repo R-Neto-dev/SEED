@@ -393,9 +393,83 @@
 <div id="provas-page" class="page-content" style="display: none;">
 
     <section class="dashboard-intro">
-        <h1>Gerenciamento de Provas</h1>
-        <p>Cadastre e gerencie as provas</p>
+        <h1>Provas Estaduais</h1>
+        <p>Acompanhe todas as avaliações do estado</p>
     </section>
+
+    <!-- CARDS -->
+    <div class="provas-stats">
+
+        <div class="prova-stat-card">
+            <div class="prova-icon blue">
+                <i class='bx bx-file'></i>
+            </div>
+
+            <div>
+                <h2>12.450</h2>
+                <span>Provas Totais</span>
+            </div>
+        </div>
+
+        <div class="prova-stat-card">
+            <div class="prova-icon yellow">
+                <i class='bx bx-time'></i>
+            </div>
+
+            <div>
+                <h2>2</h2>
+                <span>Em Andamento</span>
+            </div>
+        </div>
+
+        <div class="prova-stat-card">
+            <div class="prova-icon green">
+                <i class='bx bx-buildings'></i>
+            </div>
+
+            <div>
+                <h2>245</h2>
+                <span>Escolas Participantes</span>
+            </div>
+        </div>
+
+        <div class="prova-stat-card">
+            <div class="prova-icon purple">
+                <i class='bx bx-bar-chart-alt-2'></i>
+            </div>
+
+            <div>
+                <h2>73%</h2>
+                <span>Média Estadual</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FILTROS -->
+    <div class="provas-filters">
+
+        <div class="search-provas">
+            <i class='bx bx-search'></i>
+            <input type="text" placeholder="Buscar prova...">
+        </div>
+
+        <select>
+            <option>Todas</option>
+            <option>Concluídas</option>
+            <option>Em andamento</option>
+            <option>Agendadas</option>
+        </select>
+
+        <select>
+            <option>2026</option>
+            <option>2025</option>
+        </select>
+
+    </div>
+
+    <!-- LISTA -->
+    <div id="provas-list"></div>
 
 </div>
 
