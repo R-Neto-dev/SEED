@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Calendário | Professor</title>
+
+    <!-- Boxicons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+
+    <!-- Fonte -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css"/>
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo-area">
+          <div class="logo-icon">PS</div>
+
+          <div class="logo-text-wrapper">
+            <span class="logo-text">Prova Sergipe</span>
+            <span class="logo-subtitle">Professor</span>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="index.html" class="nav-item">
+            <i class="bx bx-home"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="provas.html" class="nav-item">
+            <i class="bx bx-book-open"></i>
+            <span>Provas</span>
+          </a>
+
+          <a href="turmas.html" class="nav-item">
+            <i class="bx bx-group"></i>
+            <span>Turmas</span>
+          </a>
+
+          <a href="banco.html" class="nav-item">
+            <i class="bx bx-library"></i>
+            <span>Banco de Questões</span>
+          </a>
+
+          <a href="resultados.html" class="nav-item">
+            <i class="bx bx-line-chart"></i>
+            <span>Resultados</span>
+          </a>
+
+          <a href="calendario.html" class="nav-item active">
+            <i class="bx bx-calendar-event"></i>
+            <span>Calendário</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="#" class="nav-item">
+            <i class="bx bx-cog"></i>
+            <span>Configurações</span>
+          </a>
+
+          <a href="#" class="nav-item" id="logout">
+            <i class="bx bx-log-out-circle"></i>
+            <span>Sair</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-btn" id="menuBtn">
+              <i class="bx bx-menu"></i>
+            </button>
+          </div>
+
+          <div class="header-right">
+            <!-- Notificação -->
+            <button class="notification-btn">
+              <i class="bx bx-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+
+            <!-- Usuário -->
+            <div class="user">
+              <div class="user-avatar">P</div>
+
+              <div class="user-details">
+                <div class="user-name">Paula Santos</div>
+                <div class="user-role">Professor</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+          <!-- HEADER CALENDÁRIO -->
+          <div class="provas-header">
+            <div>
+              <h1>Calendário</h1>
+              <p>Gerencie suas provas e eventos</p>
+            </div>
+
+            <button class="btn-new-exam">
+              <i class="bx bx-plus"></i>
+              Novo Evento
+            </button>
+          </div>
+
+          <!-- GRID -->
+          <div class="calendar-page-grid">
+            <!-- CALENDÁRIO -->
+            <div class="card calendar-page-card">
+              <div class="card-header">
+                <h2>Abril 2026</h2>
+
+                <div class="calendar-nav">
+                  <button class="cal-nav">
+                    <i class="bx bx-chevron-left"></i>
+                  </button>
+
+                  <button class="cal-nav">
+                    <i class="bx bx-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="calendar">
+                <!-- DIAS DA SEMANA -->
+                <div class="calendar-weekdays">
+                  <span>Dom</span>
+                  <span>Seg</span>
+                  <span>Ter</span>
+                  <span>Qua</span>
+                  <span>Qui</span>
+                  <span>Sex</span>
+                  <span>Sáb</span>
+                </div>
+
+                <!-- DIAS -->
+                <div class="calendar-days">
+                  <!-- Linha 1 -->
+                  <div class="calendar-day empty"></div>
+                  <div class="calendar-day empty"></div>
+                  <div class="calendar-day empty"></div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">1</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">2</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">3</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">4</span>
+                  </div>
+
+                  <!-- Linha 2 -->
+                  <div class="calendar-day">
+                    <span class="day-number">5</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">6</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">7</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">8</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">9</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">10</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">11</span>
+                  </div>
+
+                  <!-- Linha 3 -->
+                  <div class="calendar-day">
+                    <span class="day-number">12</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">13</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">14</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">15</span>
+
+                    <div class="event exam-event">
+                      Prova de Matemática
+                    </div>
+                  </div>
+
+                  <div class="calendar-day active-day">
+                    <span class="day-number">16</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">17</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">18</span>
+
+                    <div class="event exam-event">
+                      Prova de Matemática
+                    </div>
+                  </div>
+
+                  <!-- Linha 4 -->
+                  <div class="calendar-day">
+                    <span class="day-number">19</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">20</span>
+
+                    <div class="event deadline-event">
+                      Entrega de Notas
+                    </div>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">21</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">22</span>
+
+                    <div class="event meeting-event">
+                      Reunião Pedagógica
+                    </div>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">23</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">24</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">25</span>
+
+                    <div class="event exam-event">
+                      Prova de Matemática
+                    </div>
+                  </div>
+
+                  <!-- Linha 5 -->
+                  <div class="calendar-day">
+                    <span class="day-number">26</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">27</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">28</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">29</span>
+                  </div>
+
+                  <div class="calendar-day">
+                    <span class="day-number">30</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EVENTOS -->
+            <div class="card upcoming-events-card">
+              <div class="card-header">
+                <h2>Próximos Eventos</h2>
+              </div>
+
+              <div class="upcoming-events">
+                <div class="upcoming-item">
+                  <div class="upcoming-color exam"></div>
+
+                  <div>
+                    <h4>Prova de Matemática</h4>
+                    <p>15 Abril - 08:00</p>
+                  </div>
+                </div>
+
+                <div class="upcoming-item">
+                  <div class="upcoming-color deadline"></div>
+
+                  <div>
+                    <h4>Entrega de Notas</h4>
+                    <p>20 Abril - 18:00</p>
+                  </div>
+                </div>
+
+                <div class="upcoming-item">
+                  <div class="upcoming-color meeting"></div>
+
+                  <div>
+                    <h4>Reunião Pedagógica</h4>
+                    <p>22 Abril - 14:00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="javascript.js"></script>
+  </body>
+</html>

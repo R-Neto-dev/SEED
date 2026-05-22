@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Banco de Questões | Professor</title>
+
+    <!-- Boxicons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+
+    <!-- Fonte -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo-area">
+          <div class="logo-icon">PS</div>
+
+          <div class="logo-text-wrapper">
+            <span class="logo-text">Prova Sergipe</span>
+            <span class="logo-subtitle">Professor</span>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="index.html" class="nav-item">
+            <i class="bx bx-home"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="provas.html" class="nav-item">
+            <i class="bx bx-book-open"></i>
+            <span>Provas</span>
+          </a>
+
+          <a href="turmas.html" class="nav-item">
+            <i class="bx bx-group"></i>
+            <span>Turmas</span>
+          </a>
+
+          <a href="banco.html" class="nav-item active">
+            <i class="bx bx-library"></i>
+            <span>Banco de Questões</span>
+          </a>
+
+          <a href="resultados.html" class="nav-item">
+            <i class="bx bx-line-chart"></i>
+            <span>Resultados</span>
+          </a>
+
+          <a href="calendario.html" class="nav-item">
+            <i class="bx bx-calendar-event"></i>
+            <span>Calendário</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="#" class="nav-item">
+            <i class="bx bx-cog"></i>
+            <span>Configurações</span>
+          </a>
+
+          <a href="#" class="nav-item">
+            <i class="bx bx-log-out-circle"></i>
+            <span>Sair</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-btn">
+              <i class="bx bx-menu"></i>
+            </button>
+          </div>
+
+          <div class="header-right">
+            <button class="notification-btn">
+              <i class="bx bx-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+
+            <div class="user">
+              <div class="user-avatar">P</div>
+
+              <div class="user-details">
+                <div class="user-name">Paula Santos</div>
+                <div class="user-role">Professor</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+          <!-- HEADER -->
+          <div class="provas-header">
+            <div>
+              <h1>Banco de Questões</h1>
+              <p>Gerencie suas questões para provas</p>
+            </div>
+
+            <button class="btn-new-exam">
+              <i class="bx bx-plus"></i>
+              Nova Questão
+            </button>
+          </div>
+
+          <!-- STATS -->
+          <div class="question-stats">
+            <div class="question-stat-card">
+              <div class="question-stat-icon blue">
+                <i class="bx bx-book"></i>
+              </div>
+
+              <div>
+                <h2>5</h2>
+                <p>Total de Questões</p>
+              </div>
+            </div>
+
+            <div class="question-stat-card">
+              <div class="question-stat-icon green">
+                <i class="bx bx-purchase-tag"></i>
+              </div>
+
+              <div>
+                <h2>4</h2>
+                <p>Disciplinas</p>
+              </div>
+            </div>
+
+            <div class="question-stat-card">
+              <div class="question-stat-icon yellow">
+                <i class="bx bx-filter-alt"></i>
+              </div>
+
+              <div>
+                <h2>8</h2>
+                <p>Temas</p>
+              </div>
+            </div>
+
+            <div class="question-stat-card">
+              <div class="question-stat-icon purple">
+                <i class="bx bx-copy"></i>
+              </div>
+
+              <div>
+                <h2>30</h2>
+                <p>Usos em Provas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PESQUISA -->
+          <div class="card question-search-card">
+            <div class="question-search">
+              <div class="search-input">
+                <i class="bx bx-search"></i>
+
+                <input
+                  type="text"
+                  placeholder="Buscar por enunciado ou tema..."
+                />
+              </div>
+
+              <select>
+                <option>Todas</option>
+              </select>
+
+              <select>
+                <option>Todas</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- QUESTÕES -->
+
+          <!-- QUESTÃO 1 -->
+          <div class="card question-card">
+            <div class="question-top">
+              <div class="question-tags">
+                <span class="tag">Matemática</span>
+                <span class="tag">Equações</span>
+                <span class="tag medium">Médio</span>
+                <span class="tag usage">Usada 5x</span>
+              </div>
+
+              <div class="question-actions">
+                <i class="bx bx-show"></i>
+                <i class="bx bx-edit"></i>
+                <i class="bx bx-copy"></i>
+                <i class="bx bx-trash"></i>
+              </div>
+            </div>
+
+            <h3>
+              Qual é o resultado da expressão: 3x + 5 = 20, quando isolamos x?
+            </h3>
+
+            <div class="alternatives">
+              <span class="alternative correct">A) x = 5...</span>
+              <span class="alternative">B) x = 15...</span>
+              <span class="alternative">C) x = 7...</span>
+              <span class="alternative">D) x = 3...</span>
+            </div>
+          </div>
+
+          <!-- QUESTÃO 2 -->
+          <div class="card question-card">
+            <div class="question-top">
+              <div class="question-tags">
+                <span class="tag">História</span>
+                <span class="tag">Brasil Império</span>
+                <span class="tag easy">Fácil</span>
+                <span class="tag usage">Usada 8x</span>
+              </div>
+
+              <div class="question-actions">
+                <i class="bx bx-show"></i>
+                <i class="bx bx-edit"></i>
+                <i class="bx bx-copy"></i>
+                <i class="bx bx-trash"></i>
+              </div>
+            </div>
+
+            <h3>
+              Complete a frase: "A Independência do Brasil foi proclamada em..."
+            </h3>
+
+            <div class="alternatives">
+              <span class="alternative correct">
+                A) 7 de setembro de 182...
+              </span>
+
+              <span class="alternative">
+                B) 15 de novembro de 18...
+              </span>
+
+              <span class="alternative">
+                C) 22 de abril de 1500...
+              </span>
+
+              <span class="alternative">
+                D) 13 de maio de 1888...
+              </span>
+            </div>
+          </div>
+
+          <!-- QUESTÃO 3 -->
+          <div class="card question-card">
+            <div class="question-top">
+              <div class="question-tags">
+                <span class="tag">Ciências</span>
+                <span class="tag">Química</span>
+                <span class="tag easy">Fácil</span>
+                <span class="tag usage">Usada 12x</span>
+              </div>
+
+              <div class="question-actions">
+                <i class="bx bx-show"></i>
+                <i class="bx bx-edit"></i>
+                <i class="bx bx-copy"></i>
+                <i class="bx bx-trash"></i>
+              </div>
+            </div>
+
+            <h3>Qual é a fórmula química da água?</h3>
+
+            <div class="alternatives">
+              <span class="alternative correct">A) H2O...</span>
+              <span class="alternative">B) CO2...</span>
+              <span class="alternative">C) NaCl...</span>
+              <span class="alternative">D) O2...</span>
+            </div>
+          </div>
+
+          <!-- QUESTÃO 4 -->
+          <div class="card question-card">
+            <div class="question-top">
+              <div class="question-tags">
+                <span class="tag">Português</span>
+                <span class="tag">Análise Sintática</span>
+                <span class="tag medium">Médio</span>
+                <span class="tag usage">Usada 3x</span>
+              </div>
+
+              <div class="question-actions">
+                <i class="bx bx-show"></i>
+                <i class="bx bx-edit"></i>
+                <i class="bx bx-copy"></i>
+                <i class="bx bx-trash"></i>
+              </div>
+            </div>
+
+            <h3>
+              Identifique o sujeito da oração:
+              "Os alunos estudaram para a prova."
+            </h3>
+
+            <div class="alternatives">
+              <span class="alternative correct">
+                A) Os alunos...
+              </span>
+
+              <span class="alternative">
+                B) estudaram...
+              </span>
+
+              <span class="alternative">
+                C) para a prova...
+              </span>
+
+              <span class="alternative">
+                D) a prova...
+              </span>
+            </div>
+          </div>
+
+          <!-- QUESTÃO 5 -->
+          <div class="card question-card">
+            <div class="question-top">
+              <div class="question-tags">
+                <span class="tag">Matemática</span>
+                <span class="tag">Geometria</span>
+                <span class="tag hard">Difícil</span>
+                <span class="tag usage">Usada 2x</span>
+              </div>
+
+              <div class="question-actions">
+                <i class="bx bx-show"></i>
+                <i class="bx bx-edit"></i>
+                <i class="bx bx-copy"></i>
+                <i class="bx bx-trash"></i>
+              </div>
+            </div>
+
+            <h3>
+              Calcule a área de um círculo com raio igual a 5cm.
+              (Use π = 3,14)
+            </h3>
+
+            <div class="alternatives">
+              <span class="alternative correct">
+                A) 78,5 cm²...
+              </span>
+
+              <span class="alternative">
+                B) 31,4 cm²...
+              </span>
+
+              <span class="alternative">
+                C) 15,7 cm²...
+              </span>
+
+              <span class="alternative">
+                D) 157 cm²...
+              </span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

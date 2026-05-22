@@ -589,6 +589,7 @@ body {
 .calendar-day {
     aspect-ratio: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-weight: 600;
@@ -1007,4 +1008,399 @@ body {
     .turmas-stats {
         grid-template-columns: 1fr;
     }
+}
+
+/* =========================
+   CALENDÁRIO PAGE
+========================= */
+
+.calendar-page-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.calendar-page-card {
+  padding: 24px;
+}
+
+.calendar {
+  margin-top: 20px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.calendar-day {
+  min-height: 110px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px;
+  background: #fff;
+  transition: 0.2s;
+}
+
+.calendar-day:hover {
+  border-color: #4338ca;
+}
+
+.calendar-day.empty {
+  background: #f8fafc;
+}
+
+.day-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.active-day {
+  border: 2px solid #4338ca;
+  background: #f8faff;
+}
+
+.event {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.exam-event {
+  background: #3730a3;
+}
+
+.deadline-event {
+  background: #f59e0b;
+}
+
+.meeting-event {
+  background: #7c3aed;
+}
+
+.calendar-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.cal-nav {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  background: #f8f4c9;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.cal-nav:hover {
+  background: #f4ec99;
+}
+
+.upcoming-events-card {
+  padding: 24px;
+  height: fit-content;
+}
+
+.upcoming-events {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.upcoming-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.upcoming-item h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: #0f172a;
+}
+
+.upcoming-item p {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.upcoming-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.upcoming-color.exam {
+  background: #3730a3;
+}
+
+.upcoming-color.deadline {
+  background: #f59e0b;
+}
+
+.upcoming-color.meeting {
+  background: #7c3aed;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1100px) {
+  .calendar-page-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-day {
+    min-height: 90px;
+  }
+
+  .event {
+    font-size: 10px;
+  }
+}
+
+/* =========================
+   BANCO DE QUESTÕES
+========================= */
+
+.question-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.question-stat-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid #e5e7eb;
+}
+
+.question-stat-card h2 {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.question-stat-card p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.question-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.question-stat-icon.blue {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.question-stat-icon.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.question-stat-icon.yellow {
+  background: #fef3c7;
+  color: #ca8a04;
+}
+
+.question-stat-icon.purple {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+.question-search-card {
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.question-search {
+  display: flex;
+  gap: 16px;
+}
+
+.search-input {
+  flex: 1;
+  position: relative;
+}
+
+.search-input i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.search-input input {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #dbe3ef;
+  padding-left: 42px;
+  outline: none;
+  font-size: 14px;
+}
+
+.question-search select {
+  width: 160px;
+  border-radius: 12px;
+  border: 1px solid #dbe3ef;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.question-card {
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.question-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.question-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 13px;
+}
+
+.tag.easy {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tag.medium {
+  background: #fef3c7;
+  color: #ca8a04;
+}
+
+.tag.hard {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.tag.usage {
+  background: #f8fafc;
+  color: #475569;
+}
+
+.question-actions {
+  display: flex;
+  gap: 18px;
+  font-size: 20px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.question-actions i:hover {
+  color: #16a34a;
+}
+
+.question-card h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.alternatives {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.alternative {
+  background: #f1f5f9;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.alternative.correct {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1100px) {
+  .question-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .question-search {
+    flex-direction: column;
+  }
+
+  .question-search select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .question-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .question-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .question-card h3 {
+    font-size: 18px;
+  }
 }
