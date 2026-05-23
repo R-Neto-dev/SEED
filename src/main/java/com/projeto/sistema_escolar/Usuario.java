@@ -16,7 +16,9 @@ public class Usuario {
     @Column(unique = true)
     private String email;
 
+    @Column(name = "senha_hash") 
     private String senha;
 
-    private String cargo; // ADM, PROFESSOR, ALUNO, COORDENADOR
+    @Column(name = "perfil_id")
+    private Integer perfilId;
 }
