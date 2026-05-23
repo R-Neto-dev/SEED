@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #060d1a;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 15% 25%, rgba(45,68,150,.4) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 80% 75%, rgba(14,165,233,.2) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+h1 {
+  position: absolute;
+  top: 110px;
+  font-size: 58px;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: -1px;
+  z-index: 10;
+}
+
+.container {
+  width: 900px;
+  height: 520px;
+  background: #e8eef8;
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6), 0 0 0 1px #1e2a3e;
+  z-index: 1;
+}
+
+.left, .right {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ── LADO ESQUERDO (formulário) — claro ── */
+.left {
+  align-items: center;
+  color: #0f172a;
+}
+
+/* inputs */
+.input {
+  width: 270px;
+  margin-bottom: 14px;
+}
+
+.input input {
+  width: 270px;
+  height: 46px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #c8d4ec;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.input input::placeholder {
+  color: #94a3b8;
+}
+
+.input input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+}
+
+.input select {
+  width: 270px;
+  height: 46px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #c8d4ec;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  transition: border-color .2s, box-shadow .2s;
+  appearance: none;
+  cursor: pointer;
+}
+
+.input select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+}
+
+.input select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+/* botão */
+.btn {
+  width: 270px;
+  height: 46px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(95deg, #2D4496, #3b82f6);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(59,130,246,.35);
+  transition: opacity .2s, transform .15s;
+}
+
+.btn:hover {
+  opacity: .9;
+  transform: translateY(-1px);
+}
+
+/* link */
+.link {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #475569;
+}
+
+.link a {
+  color: #475569;
+  text-decoration: none;
+}
+
+.link span {
+  color: #2D4496;
+  font-weight: 600;
+}
+
+/* ícones sociais */
+.icons {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #c8d4ec;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+
+.icon:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+/* ── LADO DIREITO (logo + texto) — escuro ── */
+.right {
+  text-align: center;
+  align-items: center;
+  background: linear-gradient(145deg, #0b1120, #172044);
+  border-left: 1px solid #1e2a3e;
+  color: white;
+}
+
+.right img {
+  width: 400px;
+  max-width: 80%;
+  height: auto;
+  border-radius: 14px;
+  object-fit: contain;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+
+.right h2 {
+  margin-top: 24px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.65;
+}

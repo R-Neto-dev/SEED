@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="log-cad.css">
+</head>
+
+<body>
+
+    <h1>Cadastro</h1>
+
+    <div class="container">
+        <div class="left">
+            <div class="input">
+                <input type="text" id="cad-nome" placeholder="Nome Completo">
+            </div>
+
+            <div class="input">
+                <input type="email" id="cad-email" placeholder="E-mail">
+            </div>
+
+            <div class="input">
+                <input type="password" id="cad-senha" placeholder="Senha">
+            </div>
+
+            <div class="input">
+                <select id="cad-perfil" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="4">ALUNO</option>
+                    <option value="3">PROFESSOR</option>
+                    <option value="2">COORDENADOR</option>
+                    <option value="1">ADMIN</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="realizarCadastro()">Cadastrar</button>
+
+            <div class="link">
+                Já tem conta? <a href="login.html"><span>Entrar</span></a>
+            </div>
+
+            <div class="icons">
+                <div class="icon">G</div>
+                <div class="icon">@</div>
+            </div>
+        </div>
+
+        <div class="right">
+            <img src="img/logo.jpeg" alt>
+
+            <h2 style="margin-top: 30px;">
+                Onde tem estudo tem o<br>
+                futuro se transformando
+            </h2>
+        </div>
+
+    </div>
+    <script src="cad.js"></script>
+
+</body>
+
+</html>

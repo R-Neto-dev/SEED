@@ -853,3 +853,158 @@ body {
     background: #e2e8f0;
     color: #475569;
 }
+
+/* TURMAS */
+
+.turmas-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.turma-stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.turma-stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.turma-stat-icon i {
+    font-size: 24px;
+}
+
+.turma-stat-icon.blue {
+    background: #e0e7ff;
+    color: #1e40af;
+}
+
+.turma-stat-icon.green {
+    background: #dcfce7;
+    color: #00B34D;
+}
+
+.turma-stat-icon.purple {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+.turma-stat-card h2 {
+    font-size: 28px;
+    margin-bottom: 2px;
+}
+
+.turma-stat-card span {
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* GRID DAS TURMAS */
+
+.turmas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.turma-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.turma-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.turma-card-top h2 {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.turma-card-top p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.turma-status {
+    background: #dcfce7;
+    color: #15803d;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.turma-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.turma-info-box {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+}
+
+.turma-info-box strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: #0f172a;
+}
+
+.turma-info-box span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.green-text {
+    color: #00B34D !important;
+}
+
+.turma-btn {
+    width: 100%;
+    border: none;
+    background: #1e3a8a;
+    color: white;
+    padding: 12px;
+    border-radius: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.turma-btn:hover {
+    background: #2563eb;
+}
+
+@media (max-width: 1000px) {
+
+    .turmas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .turmas-stats {
+        grid-template-columns: 1fr;
+    }
+}

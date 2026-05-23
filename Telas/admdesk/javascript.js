@@ -94,6 +94,9 @@ navItems.forEach(item => {
                 if (page === "alunos") {
             renderStudents();
         }
+                if (page === "provas") {
+            renderProvas();
+        }
 
         if (page === "dashboard") {
             renderCalendar(currentDate);
@@ -102,10 +105,7 @@ navItems.forEach(item => {
     });
 
 });
-/* =========================
-   ALUNOS
-========================= */
-
+/*ALUNOS*/
 const students = [
     {
         initials: "JS",
@@ -233,4 +233,178 @@ function renderStudents() {
 
         studentsList.appendChild(row);
     });
+}
+/*PROVAS*/
+
+const provas = [
+
+    {
+        titulo: "SAESE 2026 - 1º Bimestre",
+        status: "Em Andamento",
+        escolas: "245 escolas",
+        alunos: "85 600 alunos",
+        data: "15 Abr 2026",
+        participacao: 78,
+        media: 72
+    },
+
+    {
+        titulo: "Avaliação Diagnóstica - Matemática",
+        status: "Concluída",
+        escolas: "245 escolas",
+        alunos: "42 800 alunos",
+        data: "10 Abr 2026",
+        participacao: 95,
+        media: 68
+    },
+
+    {
+        titulo: "Simulado ENEM 2026",
+        status: "Agendada",
+        escolas: "120 escolas",
+        alunos: "28 500 alunos",
+        data: "25 Abr 2026",
+        participacao: 0,
+        media: 0
+    },
+
+    {
+        titulo: "SAESE 2025 - 4º Bimestre",
+        status: "Concluída",
+        escolas: "240 escolas",
+        alunos: "82 000 alunos",
+        data: "15 Nov 2025",
+        participacao: 92,
+        media: 74
+    }
+
+];
+
+function renderProvas() {
+
+    const provasList = document.getElementById("provas-list");
+
+    if (!provasList) return;
+
+    provasList.innerHTML = "";
+
+    provas.forEach(prova => {
+
+        let statusClass = "";
+
+        if (prova.status === "Em Andamento") {
+            statusClass = "status-andamento";
+        }
+
+        if (prova.status === "Concluída") {
+            statusClass = "status-concluida";
+        }
+
+        if (prova.status === "Agendada") {
+            statusClass = "status-agendada";
+        }
+
+        const card = document.createElement("div");
+
+        card.classList.add("prova-card");
+
+        card.innerHTML = `
+
+            <div class="prova-top">
+
+                <div>
+
+                    <div class="prova-title">
+
+                        <h2>${prova.titulo}</h2>
+
+                        <span class="status-badge ${statusClass}">
+                            ${prova.status}
+                        </span>
+
+                    </div>
+
+                    <div class="prova-meta">
+
+                        <span>
+                            <i class='bx bx-buildings'></i>
+                            ${prova.escolas}
+                        </span>
+
+                        <span>
+                            <i class='bx bx-group'></i>
+                            ${prova.alunos}
+                        </span>
+
+                        <span>
+                            <i class='bx bx-calendar'></i>
+                            ${prova.data}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="prova-actions">
+
+                    <button class="prova-btn">
+                        <i class='bx bx-show'></i>
+                        Detalhes
+                    </button>
+
+                    <button class="prova-btn">
+                        <i class='bx bx-bar-chart-alt-2'></i>
+                        Relatório
+                    </button>
+
+                </div>
+
+            </div>
+
+            ${
+                prova.status !== "Agendada"
+                ?
+                `
+                <div class="progress-row">
+
+                    <div class="progress-item">
+
+                        <p>
+                            Participação ${prova.participacao}%
+                        </p>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill"
+                                style="width:${prova.participacao}%">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-item">
+
+                        <p>
+                            Média Estadual ${prova.media}%
+                        </p>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill"
+                                style="width:${prova.media}%">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                `
+                :
+                ""
+            }
+
+        `;
+
+        provasList.appendChild(card);
+
+    });
+
 }
