@@ -1,4 +1,4 @@
-package com.projeto.sistema_escolar;
+package com.projeto.sistema_escolar.dto;
 
 import lombok.Data;
 

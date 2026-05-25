@@ -12,8 +12,8 @@ function realizarCadastro() {
         perfilId: parseInt(perfilId)
     };
 
-    // Cole exatamente esta URL, sem mudar nada:
-    const url = 'http://localhost:27641/api/usuarios';
+    // Endpoint de cadastro (ajustado para o backend atual)
+    const url = 'http://localhost:8081/api/cadastro';
 
     fetch(url, {
         method: 'POST',

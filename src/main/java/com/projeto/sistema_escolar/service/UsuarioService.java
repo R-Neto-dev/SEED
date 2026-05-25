@@ -1,9 +1,14 @@
-package com.projeto.sistema_escolar;
+package com.projeto.sistema_escolar.service;
 
+import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.projeto.sistema_escolar.model.Usuario;
+import com.projeto.sistema_escolar.repository.UsuarioRepository;
+import com.projeto.sistema_escolar.dto.CadastroRequest;
+import com.projeto.sistema_escolar.dto.LoginResponse;
 
 @Service
 public class UsuarioService {
@@ -32,13 +37,11 @@ public class UsuarioService {
         return null;
     }
 
-    // Dentro do método cadastrar no UsuarioService.java, troque o final por:
     public String cadastrar(CadastroRequest dados) {
         if (repository.existsByEmail(dados.getEmail())) {
             return "Erro: E-mail já cadastrado!";
         }
         
-        // Chama o SQL direto que criamos acima
         repository.cadastrarUsuarioNative(
             dados.getNome(), 
             dados.getEmail(), 
@@ -47,5 +50,25 @@ public class UsuarioService {
         );
         
         return "Cadastro realizado com sucesso!";
+    }
+
+    public List<Usuario> listarTodos() {
+        return repository.findAll();
+    }
+
+    public Optional<Usuario> buscarPorId(Long id) {
+        return repository.findById(id);
+    }
+
+    public Usuario salvar(Usuario usuario) {
+        return repository.save(usuario);
+    }
+
+    public boolean existePorId(Long id) {
+        return repository.existsById(id);
+    }
+
+    public void deletar(Long id) {
+        repository.deleteById(id);
     }
 }
