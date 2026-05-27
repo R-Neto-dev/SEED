@@ -3,7 +3,7 @@ package com.projeto.sistema_escolar.controller;
 import com.projeto.sistema_escolar.model.Escola;
 import com.projeto.sistema_escolar.service.EscolaService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,29 +13,22 @@ import java.util.List;
 @CrossOrigin("*")
 public class EscolaController {
 
-    @Autowired
-    private EscolaService escolaService;
+    private final EscolaService escolaService;
 
-    @PostMapping
-    public Escola cadastrarEscola(@RequestBody Escola escola) {
-
-        try {
-
-            System.out.println("CHEGOU NO POST");
-            System.out.println(escola);
-
-            return escolaService.salvarEscola(escola);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            throw e;
-        }
+    public EscolaController(EscolaService escolaService) {
+        this.escolaService = escolaService;
     }
 
+    // CADASTRAR ESCOLA
+    //@PreAuthorize("hasRole('ADMINISTRADOR')")
+    @PostMapping
+    public Escola cadastrar(@RequestBody Escola escola) {
+        return escolaService.cadastrar(escola);
+    }
+
+    // LISTAR ESCOLAS
     @GetMapping
-    public List<Escola> listarEscolas() {
-        return escolaService.listarEscolas();
+    public List<Escola> listar() {
+        return escolaService.listarTodas();
     }
 }

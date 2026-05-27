@@ -1,14 +1,10 @@
 package com.projeto.sistema_escolar.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "turmas")
-@Data
 public class Turma {
 
     @Id
@@ -16,12 +12,30 @@ public class Turma {
     private Long id;
 
     private String nome;
-    private String serie;
 
-    @ManyToOne
-    @JoinColumn(name = "escola_id")
-    private Escola escola;
+    // UMA turma possui vários alunos
+    @OneToMany(mappedBy = "turma")
+    private List<Usuario> alunos;
 
-    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
-    private List<Aluno> alunos = new ArrayList<>();
+    public Turma() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Usuario> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Usuario> alunos) {
+        this.alunos = alunos;
+    }
 }

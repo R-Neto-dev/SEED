@@ -1,113 +1,59 @@
 package com.projeto.sistema_escolar.service;
 
-import com.projeto.sistema_escolar.dto.AlunoResponse;
-import com.projeto.sistema_escolar.dto.TurmaResponse;
-import com.projeto.sistema_escolar.model.Aluno;
 import com.projeto.sistema_escolar.model.Turma;
-import com.projeto.sistema_escolar.repository.AlunoRepository;
+import com.projeto.sistema_escolar.model.Usuario;
 import com.projeto.sistema_escolar.repository.TurmaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.projeto.sistema_escolar.repository.UsuarioRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TurmaService {
 
-    @Autowired
-    private TurmaRepository turmaRepository;
+    private final TurmaRepository turmaRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private AlunoRepository alunoRepository;
+    public TurmaService(
+            TurmaRepository turmaRepository,
+            UsuarioRepository usuarioRepository
+    ) {
+        this.turmaRepository = turmaRepository;
+        this.usuarioRepository = usuarioRepository;
+    }
 
-    // =========================
-    // CREATE TURMA
-    // =========================
+    // SALVAR TURMA
     public Turma salvarTurma(Turma turma) {
         return turmaRepository.save(turma);
     }
 
-    // =========================
-    // LISTAR TURMAS (SEM ALUNOS - MAIS LIMPO)
-    // =========================
-    public List<TurmaResponse> listarTurmasDTO() {
-
-        return turmaRepository.findAll()
-                .stream()
-                .map(this::toDTOWithoutAlunos)
-                .toList();
+    // LISTAR TURMAS
+    public List<Turma> listarTurmasDTO() {
+        return turmaRepository.findAll();
     }
 
-    // =========================
-    // BUSCAR TURMA POR ID (COM ALUNOS)
-    // =========================
-    public TurmaResponse buscarTurmaDTO(Long id) {
-
-        Turma turma = turmaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
-
-        return toDTOWithAlunos(turma);
+    // BUSCAR TURMA POR ID
+    public Optional<Turma> buscarTurmaDTO(Long id) {
+        return turmaRepository.findById(id);
     }
 
-    // =========================
-    // ENTITY INTERNA
-    // =========================
-    public Turma buscarPorId(Long id) {
-        return turmaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
-    }
+    // ADICIONAR ALUNO NA TURMA
+    public Turma adicionarAlunoNaTurma(Long turmaId, Usuario aluno) {
 
-    // =========================
-    // ADD ALUNO
-    // =========================
-    public Aluno adicionarAlunoNaTurma(Long turmaId, Aluno aluno) {
+        Optional<Turma> turmaOpt = turmaRepository.findById(turmaId);
 
-        Turma turma = turmaRepository.findById(turmaId)
-                .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
+        if (turmaOpt.isEmpty()) {
+            return null;
+        }
+
+        Turma turma = turmaOpt.get();
 
         aluno.setTurma(turma);
 
-        return alunoRepository.save(aluno);
-    }
+        usuarioRepository.save(aluno);
 
-    // =========================
-    // DTO SEM ALUNOS (LISTA TURMAS)
-    // =========================
-    private TurmaResponse toDTOWithoutAlunos(Turma turma) {
-
-        TurmaResponse dto = new TurmaResponse();
-        dto.setId(turma.getId());
-        dto.setNome(turma.getNome());
-        dto.setSerie(turma.getSerie());
-
-        dto.setAlunos(List.of()); // vazio mesmo
-
-        return dto;
-    }
-
-    // =========================
-    // DTO COM ALUNOS (DETALHE)
-    // =========================
-    private TurmaResponse toDTOWithAlunos(Turma turma) {
-
-        TurmaResponse dto = new TurmaResponse();
-        dto.setId(turma.getId());
-        dto.setNome(turma.getNome());
-        dto.setSerie(turma.getSerie());
-
-        List<AlunoResponse> alunos = turma.getAlunos()
-                .stream()
-                .map(a -> {
-                    AlunoResponse ar = new AlunoResponse();
-                    ar.setId(a.getId());
-                    ar.setNome(a.getNome());
-                    ar.setIdade(a.getIdade());
-                    return ar;
-                })
-                .toList();
-
-        dto.setAlunos(alunos);
-
-        return dto;
+        return turma;
     }
 }

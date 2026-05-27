@@ -10,7 +10,10 @@ const months = [
     "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
 ];
 
-// evita quebra total do JS
+// ==========================
+// CALENDÁRIO
+// ==========================
+
 if (calendarDays && monthYear && prevMonth && nextMonth) {
 
     function renderCalendar(date) {
@@ -28,14 +31,18 @@ if (calendarDays && monthYear && prevMonth && nextMonth) {
         const today = new Date();
 
         for (let i = 0; i < firstDay; i++) {
+
             const empty = document.createElement("div");
+
             calendarDays.appendChild(empty);
         }
 
         for (let day = 1; day <= lastDate; day++) {
 
             const dayElement = document.createElement("div");
+
             dayElement.classList.add("calendar-day");
+
             dayElement.textContent = day;
 
             if (
@@ -51,18 +58,26 @@ if (calendarDays && monthYear && prevMonth && nextMonth) {
     }
 
     prevMonth.addEventListener("click", () => {
+
         currentDate.setMonth(currentDate.getMonth() - 1);
+
         renderCalendar(currentDate);
     });
 
     nextMonth.addEventListener("click", () => {
+
         currentDate.setMonth(currentDate.getMonth() + 1);
+
         renderCalendar(currentDate);
     });
 
     renderCalendar(currentDate);
 }
-// itens nav
+
+// ==========================
+// NAVEGAÇÃO
+// ==========================
+
 const navItems = document.querySelectorAll(".nav-item");
 
 const pages = document.querySelectorAll(".page-content");
@@ -71,7 +86,6 @@ navItems.forEach(item => {
 
     item.addEventListener("click", () => {
 
-        // remove active
         navItems.forEach(nav => {
             nav.classList.remove("active");
         });
@@ -80,161 +94,134 @@ navItems.forEach(item => {
 
         const page = item.dataset.page;
 
-        // esconde todas
         pages.forEach(p => {
             p.style.display = "none";
         });
 
-        // mostra página clicada
         const selectedPage = document.getElementById(`${page}-page`);
 
-        if(selectedPage) {
+        if (selectedPage) {
             selectedPage.style.display = "block";
         }
-                if (page === "alunos") {
-            renderStudents();
+
+        //if (page === "alunos") {
+        //    carregarAlunos();
+        //}
+
+        if (page === "escolas") {
+            carregarEscolas();
         }
-                if (page === "provas") {
+
+        if (page === "provas") {
             renderProvas();
         }
 
         if (page === "dashboard") {
             renderCalendar(currentDate);
         }
-
     });
-
 });
-/*ALUNOS*/
-const students = [
-    {
-        initials: "JS",
-        name: "João Silva",
-        email: "joao.silva@aluno.se.gov.br",
-        matricula: "2026001",
-        turma: "9º Ano A",
-        escola: "E.E. João Alves",
-        status: "Ativo"
-    },
 
-    {
-        initials: "MO",
-        name: "Maria Oliveira",
-        email: "maria.oliveira@aluno.se.gov.br",
-        matricula: "2026002",
-        turma: "9º Ano A",
-        escola: "E.E. João Alves",
-        status: "Ativo"
-    },
+// ==========================
+// ALUNOS (BACKEND REAL)
+// ==========================
 
-    {
-        initials: "PS",
-        name: "Pedro Santos",
-        email: "pedro.santos@aluno.se.gov.br",
-        matricula: "2026003",
-        turma: "8º Ano B",
-        escola: "E.E. Maria do Carmo",
-        status: "Ativo"
-    },
+let students = [];
 
-    {
-        initials: "AC",
-        name: "Ana Costa",
-        email: "ana.costa@aluno.se.gov.br",
-        matricula: "2026004",
-        turma: "7º Ano A",
-        escola: "E.E. Dom José Thomaz",
-        status: "Inativo"
-    },
+async function carregarAlunos() {
 
-    {
-        initials: "LF",
-        name: "Lucas Ferreira",
-        email: "lucas.ferreira@aluno.se.gov.br",
-        matricula: "2026005",
-        turma: "6º Ano C",
-        escola: "E.E. Tobias Barreto",
-        status: "Ativo"
-    },
+    try {
 
-    {
-        initials: "JL",
-        name: "Juliana Lima",
-        email: "juliana.lima@aluno.se.gov.br",
-        matricula: "2026006",
-        turma: "9º Ano B",
-        escola: "E.E. João Alves",
-        status: "Ativo"
-    },
+        const response = await fetch("http://localhost:27641/alunos");
 
-    {
-        initials: "MS",
-        name: "Marcos Souza",
-        email: "marcos.souza@aluno.se.gov.br",
-        matricula: "2026007",
-        turma: "8º Ano A",
-        escola: "E.E. Maria do Carmo",
-        status: "Ativo"
-    },
+        if (!response.ok) {
+            throw new Error("Erro ao buscar alunos");
+        }
 
-    {
-        initials: "CM",
-        name: "Carla Mendes",
-        email: "carla.mendes@aluno.se.gov.br",
-        matricula: "2026008",
-        turma: "7º Ano B",
-        escola: "E.E. Dom José Thomaz",
-        status: "Ativo"
+        students = await response.json();
+
+        renderStudents();
+
+    } catch (error) {
+
+        console.error("Erro:", error);
+
     }
-];
-
-const studentsList = document.getElementById("students-list");
+}
 
 function renderStudents() {
 
     const studentsList = document.getElementById("students-list");
 
     if (!studentsList) {
-        console.log("students-list ainda não existe");
         return;
     }
 
     studentsList.innerHTML = "";
 
     students.forEach(student => {
+
         const row = document.createElement("div");
+
         row.classList.add("student-row");
 
         row.innerHTML = `
+
             <div class="student-info">
-                <div class="student-avatar">${student.initials}</div>
-                <div>
-                    <strong>${student.name}</strong>
-                    <div class="student-email">${student.email}</div>
+
+                <div class="student-avatar">
+                    ${student.nome ? student.nome.charAt(0) : "A"}
                 </div>
+
+                <div>
+                    <strong>${student.nome || "Sem nome"}</strong>
+
+                    <div class="student-email">
+                        ${student.email || "Sem email"}
+                    </div>
+                </div>
+
             </div>
 
-            <div>${student.matricula}</div>
-
-            <div><span class="class-badge">${student.turma}</span></div>
-
-            <div>${student.escola}</div>
+            <div>
+                ${student.matricula || "-"}
+            </div>
 
             <div>
-                <span class="${student.status === "Ativo" ? "status-active" : "status-inactive"}">
-                    ${student.status}
+                <span class="class-badge">
+                    ${student.turma || "-"}
                 </span>
             </div>
 
-            <div class="action-menu">
-                <i class='bx bx-dots-vertical-rounded'></i>
+            <div>
+                ${student.escola || "-"}
             </div>
+
+            <div>
+
+                <span class="${student.status === "Inativo" ? "status-inactive" : "status-active"}">
+
+                    ${student.status || "Ativo"}
+
+                </span>
+
+            </div>
+
+            <div class="action-menu">
+
+                <i class='bx bx-dots-vertical-rounded'></i>
+
+            </div>
+
         `;
 
         studentsList.appendChild(row);
     });
 }
-/*PROVAS*/
+
+// ==========================
+// PROVAS
+// ==========================
 
 const provas = [
 
@@ -348,13 +335,19 @@ function renderProvas() {
                 <div class="prova-actions">
 
                     <button class="prova-btn">
+
                         <i class='bx bx-show'></i>
+
                         Detalhes
+
                     </button>
 
                     <button class="prova-btn">
+
                         <i class='bx bx-bar-chart-alt-2'></i>
+
                         Relatório
+
                     </button>
 
                 </div>
@@ -374,9 +367,11 @@ function renderProvas() {
                         </p>
 
                         <div class="progress-bar">
+
                             <div class="progress-fill"
                                 style="width:${prova.participacao}%">
                             </div>
+
                         </div>
 
                     </div>
@@ -388,9 +383,11 @@ function renderProvas() {
                         </p>
 
                         <div class="progress-bar">
+
                             <div class="progress-fill"
                                 style="width:${prova.media}%">
                             </div>
+
                         </div>
 
                     </div>
@@ -406,5 +403,119 @@ function renderProvas() {
         provasList.appendChild(card);
 
     });
+}
+
+    // ==========================
+// ESCOLAS
+// ==========================
+
+const escolaForm = document.getElementById("escola-form");
+
+const escolasList = document.getElementById("escolas-list");
+
+// LISTAR ESCOLAS
+async function carregarEscolas() {
+
+    try {
+
+        const response = await fetch("http://localhost:27641/escolas");
+
+        const escolas = await response.json();
+
+        escolasList.innerHTML = "";
+
+        escolas.forEach(escola => {
+
+            const row = document.createElement("div");
+
+            row.classList.add("student-row");
+
+            row.innerHTML = `
+                <div>${escola.id}</div>
+                <div>${escola.nome}</div>
+                <div>${escola.endereco}</div>
+                <div>${escola.telefone}</div>
+            `;
+
+            escolasList.appendChild(row);
+
+        });
+
+    } catch (error) {
+
+        console.error("Erro ao carregar escolas:", error);
+
+    }
+}
+
+// CADASTRAR ESCOLA
+if (escolaForm) {
+
+    escolaForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const nome = document.getElementById("nomeEscola").value;
+
+        const endereco = document.getElementById("enderecoEscola").value;
+
+        const telefone = document.getElementById("telefoneEscola").value;
+
+        const email = document.getElementById("emailEscola").value;
+
+        const escola = {
+
+            nome,
+            endereco,
+            telefone,
+            email
+
+        };
+
+        try {
+
+            const response = await fetch("http://localhost:27641/escolas", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(escola)
+
+            });
+
+            if (!response.ok) {
+
+                throw new Error("Erro ao cadastrar escola");
+
+            }
+
+            alert("Escola cadastrada com sucesso!");
+
+            escolaForm.reset();
+
+            carregarEscolas();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Erro ao cadastrar escola");
+
+        }
+
+    });
 
 }
+
+// INICIAR LISTA
+carregarEscolas();
+
+
+// ==========================
+// INICIAR
+// ==========================
+
+//carregarAlunos();

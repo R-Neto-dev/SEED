@@ -2,7 +2,6 @@ package com.projeto.sistema_escolar.service;
 
 import com.projeto.sistema_escolar.model.Escola;
 import com.projeto.sistema_escolar.repository.EscolaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,16 +9,18 @@ import java.util.List;
 @Service
 public class EscolaService {
 
-    @Autowired
-    private EscolaRepository escolaRepository;
+    private final EscolaRepository escolaRepository;
 
-    // cadastrar escola
-    public Escola salvarEscola(Escola escola) {
+    public EscolaService(EscolaRepository escolaRepository) {
+        this.escolaRepository = escolaRepository;
+    }
+
+    public Escola cadastrar(Escola escola) {
         return escolaRepository.save(escola);
     }
 
-    // listar escolas
-    public List<Escola> listarEscolas() {
+    // LISTAR ESCOLAS
+    public List<Escola> listarTodas() {
         return escolaRepository.findAll();
     }
 }

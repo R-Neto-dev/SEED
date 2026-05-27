@@ -1,10 +1,15 @@
 package com.projeto.sistema_escolar.controller;
 
+import com.projeto.sistema_escolar.model.Turma;
 import com.projeto.sistema_escolar.model.Usuario;
+import com.projeto.sistema_escolar.service.TurmaService;
 import com.projeto.sistema_escolar.service.UsuarioService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -13,44 +18,149 @@ public class UsuarioController {
 
     private final UsuarioService service;
 
-    public UsuarioController(UsuarioService service) {
+    private final TurmaService turmaService;
+
+    public UsuarioController(
+            UsuarioService service,
+            TurmaService turmaService
+    ) {
         this.service = service;
+        this.turmaService = turmaService;
     }
+
+    // ==========================
+    // LISTAR TODOS
+    // ==========================
 
     @GetMapping
     public List<Usuario> listar() {
         return service.listarTodos();
     }
 
+    // ==========================
+    // BUSCAR POR ID
+    // ==========================
+
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
+
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // ==========================
+    // CRIAR USUÁRIO
+    // ==========================
+
     @PostMapping
     public Usuario criar(@RequestBody Usuario usuario) {
+
         return service.salvar(usuario);
     }
 
+    // ==========================
+    // ATUALIZAR USUÁRIO
+    // ==========================
+
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
+    public ResponseEntity<Usuario> atualizar(
+            @PathVariable Long id,
+            @RequestBody Usuario usuarioAtualizado
+    ) {
+
         return service.buscarPorId(id).map(usuario -> {
+
             usuario.setNome(usuarioAtualizado.getNome());
+
             usuario.setEmail(usuarioAtualizado.getEmail());
+
             usuario.setSenha(usuarioAtualizado.getSenha());
+
             usuario.setPerfilId(usuarioAtualizado.getPerfilId());
+
             return ResponseEntity.ok(service.salvar(usuario));
+
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    // ==========================
+    // ADICIONAR ALUNO NA TURMA
+    // ==========================
+
+    @PutMapping("/{usuarioId}/turma/{turmaId}")
+    public ResponseEntity<Usuario> adicionarNaTurma(
+            @PathVariable Long usuarioId,
+            @PathVariable Long turmaId
+    ) {
+
+        Optional<Usuario> usuarioOpt =
+                service.buscarPorId(usuarioId);
+
+        if (usuarioOpt.isEmpty()) {
+
+            return ResponseEntity.notFound().build();
+        }
+
+        Optional<Turma> turmaOpt =
+                turmaService.buscarTurmaDTO(turmaId);
+
+        if (turmaOpt.isEmpty()) {
+
+            return ResponseEntity.notFound().build();
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        Turma turma = turmaOpt.get();
+
+        usuario.setTurma(turma);
+
+        Usuario usuarioSalvo = service.salvar(usuario);
+
+        return ResponseEntity.ok(usuarioSalvo);
+    }
+
+    // ==========================
+    // REMOVER DA TURMA
+    // ==========================
+
+    @PutMapping("/{usuarioId}/remover-turma")
+    public ResponseEntity<Usuario> removerDaTurma(
+            @PathVariable Long usuarioId
+    ) {
+
+        Optional<Usuario> usuarioOpt =
+                service.buscarPorId(usuarioId);
+
+        if (usuarioOpt.isEmpty()) {
+
+            return ResponseEntity.notFound().build();
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        usuario.setTurma(null);
+
+        Usuario usuarioSalvo = service.salvar(usuario);
+
+        return ResponseEntity.ok(usuarioSalvo);
+    }
+
+    // ==========================
+    // DELETAR
+    // ==========================
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
+
         if (service.existePorId(id)) {
+
             service.deletar(id);
+
             return ResponseEntity.noContent().build();
         }
+
         return ResponseEntity.notFound().build();
     }
 }

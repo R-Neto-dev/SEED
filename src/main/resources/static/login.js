@@ -28,7 +28,7 @@ function fazerLogin() {
 
         switch (data.cargo) {
             case 'ADMIN':
-                window.location.href = "admdesk/admin.html";
+                window.location.href = "./admin/admin.html";
                 break;
             case 'ALUNO':
                 // Como agora está na mesma pasta, não precisa de "Aluno/alunodesk/"
