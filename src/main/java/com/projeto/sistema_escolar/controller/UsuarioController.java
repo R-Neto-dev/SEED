@@ -5,6 +5,9 @@ import com.projeto.sistema_escolar.model.Usuario;
 import com.projeto.sistema_escolar.service.TurmaService;
 import com.projeto.sistema_escolar.service.UsuarioService;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,18 +31,10 @@ public class UsuarioController {
         this.turmaService = turmaService;
     }
 
-    // ==========================
-    // LISTAR TODOS
-    // ==========================
-
     @GetMapping
     public List<Usuario> listar() {
         return service.listarTodos();
     }
-
-    // ==========================
-    // BUSCAR POR ID
-    // ==========================
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
@@ -49,19 +44,12 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ==========================
-    // CRIAR USUÁRIO
-    // ==========================
-
     @PostMapping
     public Usuario criar(@RequestBody Usuario usuario) {
 
         return service.salvar(usuario);
     }
 
-    // ==========================
-    // ATUALIZAR USUÁRIO
-    // ==========================
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(
@@ -84,9 +72,6 @@ public class UsuarioController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    // ==========================
-    // ADICIONAR ALUNO NA TURMA
-    // ==========================
 
     @PutMapping("/{usuarioId}/turma/{turmaId}")
     public ResponseEntity<Usuario> adicionarNaTurma(
@@ -121,9 +106,6 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioSalvo);
     }
 
-    // ==========================
-    // REMOVER DA TURMA
-    // ==========================
 
     @PutMapping("/{usuarioId}/remover-turma")
     public ResponseEntity<Usuario> removerDaTurma(
@@ -147,10 +129,6 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioSalvo);
     }
 
-    // ==========================
-    // DELETAR
-    // ==========================
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
 
@@ -163,4 +141,8 @@ public class UsuarioController {
 
         return ResponseEntity.notFound().build();
     }
+
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    private Turma turma;
 }

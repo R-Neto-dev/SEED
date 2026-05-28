@@ -1,10 +1,15 @@
 package com.projeto.sistema_escolar.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "turmas")
+@Data
 public class Turma {
 
     @Id
@@ -13,29 +18,9 @@ public class Turma {
 
     private String nome;
 
-    // UMA turma possui vários alunos
+    private String serie;
+
     @OneToMany(mappedBy = "turma")
+    @JsonIgnoreProperties("turma")
     private List<Usuario> alunos;
-
-    public Turma() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<Usuario> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Usuario> alunos) {
-        this.alunos = alunos;
-    }
 }

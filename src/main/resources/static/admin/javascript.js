@@ -112,6 +112,10 @@ navItems.forEach(item => {
             carregarEscolas();
         }
 
+        if (page === "turmas") {
+            carregarTurmas();
+        }
+
         if (page === "provas") {
             renderProvas();
         }
@@ -409,6 +413,17 @@ function renderProvas() {
 // ESCOLAS
 // ==========================
 
+// ==========================
+// TURMAS
+// ==========================
+
+const turmaForm = document.getElementById("turma-form");
+
+const turmasList = document.getElementById("turmas-list");
+
+const adicionarAlunoForm =
+    document.getElementById("adicionar-aluno-form");
+
 const escolaForm = document.getElementById("escola-form");
 
 const escolasList = document.getElementById("escolas-list");
@@ -510,8 +525,159 @@ if (escolaForm) {
 
 }
 
+// LISTAR TURMAS
+async function carregarTurmas() {
+
+    try {
+
+        const response =
+            await fetch("http://localhost:27641/turmas");
+
+        const turmas = await response.json();
+
+        if (!turmasList) return;
+
+        turmasList.innerHTML = "";
+
+        turmas.forEach(turma => {
+
+            const row = document.createElement("div");
+
+            row.classList.add("student-row");
+
+            row.innerHTML = `
+                <div>${turma.id}</div>
+                <div>${turma.nome}</div>
+                <div>${turma.serie}</div>
+                <div>
+                    ${
+                        turma.alunos && turma.alunos.length > 0
+                        ? turma.alunos.map(aluno => aluno.nome).join(", ")
+                        : "Sem alunos"
+                    }
+                </div>
+            `;
+
+            turmasList.appendChild(row);
+
+        });
+
+    } catch (error) {
+
+        console.error("Erro ao carregar turmas:", error);
+
+    }
+}
+
+// CRIAR TURMA
+if (turmaForm) {
+
+    turmaForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const nome =
+            document.getElementById("nomeTurma").value;
+
+        const serie =
+            document.getElementById("serieTurma").value;
+
+        const turma = {
+            nome,
+            serie
+        };
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:27641/turmas",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(turma)
+                }
+            );
+
+            if (!response.ok) {
+
+                throw new Error("Erro ao criar turma");
+
+            }
+
+            alert("Turma criada com sucesso!");
+
+            turmaForm.reset();
+
+            carregarTurmas();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Erro ao criar turma");
+
+        }
+
+    });
+
+}
+
+// ADICIONAR ALUNO NA TURMA
+if (adicionarAlunoForm) {
+
+    adicionarAlunoForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const usuarioId =
+            document.getElementById("usuarioId").value;
+
+        const turmaId =
+            document.getElementById("turmaId").value;
+
+        try {
+
+            const response = await fetch(
+
+                `http://localhost:27641/api/usuarios/${usuarioId}/turma/${turmaId}`,
+
+                {
+                    method: "PUT"
+                }
+
+            );
+
+            if (!response.ok) {
+
+                throw new Error("Erro ao adicionar aluno");
+
+            }
+
+            alert("Aluno adicionado na turma!");
+
+            adicionarAlunoForm.reset();
+
+            carregarTurmas();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Erro ao adicionar aluno");
+
+        }
+
+    });
+
+}
+
 // INICIAR LISTA
 carregarEscolas();
+carregarTurmas();
 
 
 // ==========================

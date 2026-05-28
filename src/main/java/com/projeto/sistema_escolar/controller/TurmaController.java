@@ -1,58 +1,77 @@
 package com.projeto.sistema_escolar.controller;
 
 import com.projeto.sistema_escolar.model.Turma;
-import com.projeto.sistema_escolar.model.Usuario;
 import com.projeto.sistema_escolar.service.TurmaService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/turmas")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class TurmaController {
 
-    private final TurmaService turmaService;
+    private final TurmaService service;
 
-    public TurmaController(TurmaService turmaService) {
-        this.turmaService = turmaService;
+    public TurmaController(TurmaService service) {
+        this.service = service;
     }
 
-    // CRIAR TURMA
-    @PostMapping
-    public Turma criarTurma(@RequestBody Turma turma) {
-
-        return turmaService.salvarTurma(turma);
-
-    }
-
-    // LISTAR TURMAS
     @GetMapping
-    public List<Turma> listarTurmas() {
-
-        return turmaService.listarTurmasDTO();
-
+    public List<Turma> listar() {
+        return service.listarTodas();
     }
 
-    // BUSCAR TURMA POR ID
     @GetMapping("/{id}")
-    public Optional<Turma> buscarTurmaPorId(@PathVariable Long id) {
-
-        return turmaService.buscarTurmaDTO(id);
-
-    }
-
-    // ADICIONAR ALUNO NA TURMA
-    @PostMapping("/{turmaId}/alunos")
-    public Turma adicionarAluno(
-            @PathVariable Long turmaId,
-            @RequestBody Usuario aluno
+    public ResponseEntity<Turma> buscarPorId(
+            @PathVariable Long id
     ) {
 
-        return turmaService.adicionarAlunoNaTurma(turmaId, aluno);
-
+        return service.buscarTurmaDTO(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
+    @PostMapping
+    public Turma criar(@RequestBody Turma turma) {
+        return service.salvar(turma);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Turma> atualizar(
+            @PathVariable Long id,
+            @RequestBody Turma turmaAtualizada
+    ) {
+
+        return service.buscarTurmaDTO(id)
+                .map(turma -> {
+
+                    turma.setNome(turmaAtualizada.getNome());
+
+                    turma.setSerie(turmaAtualizada.getSerie());
+
+                    return ResponseEntity.ok(
+                            service.salvar(turma)
+                    );
+
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+    // DELETAR
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(
+            @PathVariable Long id
+    ) {
+
+        if (service.existePorId(id)) {
+
+            service.deletar(id);
+
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }

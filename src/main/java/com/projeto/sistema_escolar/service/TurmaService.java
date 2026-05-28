@@ -1,9 +1,7 @@
 package com.projeto.sistema_escolar.service;
 
 import com.projeto.sistema_escolar.model.Turma;
-import com.projeto.sistema_escolar.model.Usuario;
 import com.projeto.sistema_escolar.repository.TurmaRepository;
-import com.projeto.sistema_escolar.repository.UsuarioRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -13,47 +11,35 @@ import java.util.Optional;
 @Service
 public class TurmaService {
 
-    private final TurmaRepository turmaRepository;
-    private final UsuarioRepository usuarioRepository;
+    private final TurmaRepository repository;
 
-    public TurmaService(
-            TurmaRepository turmaRepository,
-            UsuarioRepository usuarioRepository
-    ) {
-        this.turmaRepository = turmaRepository;
-        this.usuarioRepository = usuarioRepository;
+    public TurmaService(TurmaRepository repository) {
+        this.repository = repository;
     }
 
-    // SALVAR TURMA
-    public Turma salvarTurma(Turma turma) {
-        return turmaRepository.save(turma);
+    public List<Turma> listarTodas() {
+        return repository.findAll();
     }
 
-    // LISTAR TURMAS
-    public List<Turma> listarTurmasDTO() {
-        return turmaRepository.findAll();
-    }
-
-    // BUSCAR TURMA POR ID
     public Optional<Turma> buscarTurmaDTO(Long id) {
-        return turmaRepository.findById(id);
+        return repository.findById(id);
     }
 
-    // ADICIONAR ALUNO NA TURMA
-    public Turma adicionarAlunoNaTurma(Long turmaId, Usuario aluno) {
+    public Turma salvar(Turma turma) {
+        return repository.save(turma);
+    }
 
-        Optional<Turma> turmaOpt = turmaRepository.findById(turmaId);
+    public void deletar(Long id) {
+    Turma turma = repository.findById(id).orElseThrow();
 
-        if (turmaOpt.isEmpty()) {
-            return null;
-        }
+    if (!turma.getAlunos().isEmpty()) {
+        throw new RuntimeException("Não é possível deletar turma com usuários vinculados");
+    }
 
-        Turma turma = turmaOpt.get();
+    repository.deleteById(id);
+}
 
-        aluno.setTurma(turma);
-
-        usuarioRepository.save(aluno);
-
-        return turma;
+    public boolean existePorId(Long id) {
+        return repository.existsById(id);
     }
 }

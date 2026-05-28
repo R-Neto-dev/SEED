@@ -39,8 +39,8 @@
         <i class='bx bxs-chalkboard'></i> Professores
     </a>
 
-    <a class="nav-item" data-page="">
-        <i class='bx bxs-user'></i> Turmas
+    <a class="nav-item" data-page="turmas">
+        <i class='bx bxs-user'></i> Turmas e Alunos
     </a>
 
     <a class="nav-item" data-page="provas">
@@ -457,6 +457,115 @@
         <h1>Gerenciamento de Professores</h1>
         <p>Cadastre e gerencie os professores</p>
     </section>
+
+</div>
+
+<!-- TURMAS -->
+<div id="turmas-page" class="page-content" style="display: none;">
+
+    <section class="dashboard-intro alunos-header">
+
+        <div>
+            <h1>Gerenciamento de Turmas</h1>
+            <p>Crie turmas e adicione alunos</p>
+        </div>
+
+    </section>
+
+    <!-- FORM -->
+    <div class="table-card" style="margin-bottom: 20px; padding: 20px;">
+
+        <h3 style="margin-bottom:20px;">Cadastrar Turma</h3>
+
+        <form id="turma-form">
+
+            <div style="display:flex; gap:15px; flex-wrap:wrap;">
+
+                <input
+                    type="text"
+                    id="nomeTurma"
+                    placeholder="Nome da turma"
+                    required
+                    style="flex:1; padding:12px; border-radius:10px; border:1px solid #ccc;"
+                >
+
+                <input
+                    type="text"
+                    id="serieTurma"
+                    placeholder="Série"
+                    required
+                    style="flex:1; padding:12px; border-radius:10px; border:1px solid #ccc;"
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-green"
+                style="margin-top:20px;"
+            >
+                <i class='bx bx-plus'></i>
+                Criar Turma
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- LISTA -->
+    <div class="table-card">
+
+        <div class="table-header">
+            <span>ID</span>
+            <span>Nome</span>
+            <span>Série</span>
+            <span>Alunos</span>
+        </div>
+
+        <div id="turmas-list"></div>
+
+    </div>
+
+    <!-- ADICIONAR ALUNO -->
+    <div class="table-card" style="margin-top:20px; padding:20px;">
+
+        <h3 style="margin-bottom:20px;">
+            Adicionar aluno em turma
+        </h3>
+
+        <form id="adicionar-aluno-form">
+
+            <div style="display:flex; gap:15px; flex-wrap:wrap;">
+
+                <input
+                    type="number"
+                    id="usuarioId"
+                    placeholder="ID do aluno"
+                    required
+                    style="flex:1; padding:12px; border-radius:10px; border:1px solid #ccc;"
+                >
+
+                <input
+                    type="number"
+                    id="turmaId"
+                    placeholder="ID da turma"
+                    required
+                    style="flex:1; padding:12px; border-radius:10px; border:1px solid #ccc;"
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-green"
+                style="margin-top:20px;"
+            >
+                Adicionar
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 
